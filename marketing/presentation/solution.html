@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #1E293B;
+        color: #F8FAFC;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      h1 {
+        color: #0EA5E9;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      
+      .accent {
+        color: #10B981;
+      }
+      
+      .feature-box {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 8px;
+        padding: 16px;
+        border-left: 4px solid #10B981;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container p-16">
+      <h1 class="mb-8">Introducing MeetingMind</h1>
+      
+      <div class="flex flex-row space-x-8">
+        <div class="w-1/2 flex flex-col justify-center space-y-6">
+          <div class="mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Your <span class="accent">Invisible AI Strategic Partner</span></h2>
+            <p class="text-xl mb-4">MeetingMind transforms how professionals navigate high-stakes conversations with invisible intelligence that thinks for you.</p>
+          </div>
+          
+          <div class="feature-box">
+            <p class="text-xl font-semibold mb-2"><i class="fas fa-eye-slash mr-2 accent"></i> Completely Invisible</p>
+            <p class="text-base opacity-80">Transparent overlay that works with any application without detection</p>
+          </div>
+          
+          <div class="feature-box">
+            <p class="text-xl font-semibold mb-2"><i class="fas fa-brain mr-2 accent"></i> Triple-AI Powered</p>
+            <p class="text-base opacity-80">Collaborative intelligence from GPT-5, Claude Sonnet 4.5, and Gemini Flash 2.5</p>
+          </div>
+          
+          <div class="feature-box">
+            <p class="text-xl font-semibold mb-2"><i class="fas fa-bolt mr-2 accent"></i> Real-Time Insights</p>
+            <p class="text-base opacity-80">Strategic intelligence delivered exactly when you need it</p>
+          </div>
+        </div>
+        
+        <div class="w-1/2">
+          <img src="images/Ay8rE7w8uyTT.jpeg" alt="AI assistant overlay interface" class="object-contain rounded-lg shadow-lg" style="width: 500px; height: 350px;">
+        </div>
+      </div>
+      
+      <div class="mt-8 p-4 bg-opacity-10 bg-white rounded-lg">
+        <p class="text-xl italic">"MeetingMind doesn't just assist you in meetings — it transforms how others perceive your strategic thinking."</p>
+      </div>
+    </div>
+  </body>
+</html>

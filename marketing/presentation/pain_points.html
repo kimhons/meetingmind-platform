@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #1E293B;
+        color: #F8FAFC;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      h1 {
+        color: #0EA5E9;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      
+      .accent {
+        color: #10B981;
+      }
+      
+      .stat-box {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 8px;
+        padding: 16px;
+        border-left: 4px solid #10B981;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container p-16">
+      <h1 class="mb-8">The Hidden Cost of Meetings</h1>
+      
+      <div class="flex flex-row space-x-8">
+        <div class="w-1/2">
+          <img src="images/tD4gmN5Kzdrz.jpg" alt="Stressed professionals in meeting" class="object-contain rounded-lg shadow-lg mb-6" style="width: 500px; height: 300px;">
+        </div>
+        
+        <div class="w-1/2 flex flex-col justify-center space-y-6">
+          <div class="stat-box">
+            <p class="text-xl font-semibold mb-2"><span class="accent">71%</span> of professionals report feeling unproductive during meetings</p>
+            <p class="text-base opacity-80">Time wasted in ineffective meetings costs businesses $37 billion annually</p>
+          </div>
+          
+          <div class="stat-box">
+            <p class="text-xl font-semibold mb-2"><span class="accent">65%</span> miss critical information during discussions</p>
+            <p class="text-base opacity-80">Leading to misaligned decisions and costly rework</p>
+          </div>
+          
+          <div class="stat-box">
+            <p class="text-xl font-semibold mb-2"><span class="accent">83%</span> feel unprepared for high-stakes negotiations</p>
+            <p class="text-base opacity-80">Resulting in suboptimal deals and missed opportunities</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-8 p-4 bg-opacity-10 bg-white rounded-lg">
+        <p class="text-xl italic">"The difference between success and failure often hinges on a single moment of insight during critical conversations."</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #1E293B;
+        color: #F8FAFC;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      h1 {
+        color: #0EA5E9;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      
+      .accent {
+        color: #10B981;
+      }
+      
+      .feature-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      
+      .feature-icon {
+        background: rgba(16, 185, 129, 0.1);
+        color: #10B981;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+        flex-shrink: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container p-16">
+      <h1 class="mb-8">Revolutionary Features</h1>
+      
+      <div class="flex flex-row space-x-8">
+        <div class="w-1/2 flex flex-col justify-center">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-eye-slash"></i>
+            </div>
+            <div>
+              <p class="text-xl font-semibold">Invisible Overlay Technology</p>
+              <p class="text-base opacity-80">Transparent interface that works with any application without detection</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <div>
+              <p class="text-xl font-semibold">Multi-Vision Analysis</p>
+              <p class="text-base opacity-80">Google Vision API and OpenAI Vision for comprehensive visual understanding</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <div>
+              <p class="text-xl font-semibold">Real-Time Intelligence</p>
+              <p class="text-base opacity-80">Sub-second insights during critical conversation moments</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+              <p class="text-xl font-semibold">Enterprise-Grade Security</p>
+              <p class="text-base opacity-80">End-to-end encryption with local processing options</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <div>
+              <p class="text-xl font-semibold">Platform Integration</p>
+              <p class="text-base opacity-80">Seamless compatibility with Zoom, Teams, Google Meet, and more</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-1/2">
+          <div style="height: 450px;">
+            <canvas id="featureComparisonChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      // Feature Comparison Chart
+      const ctx = document.getElementById('featureComparisonChart').getContext('2d');
+      const featureComparisonChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Invisible Interface', 'AI Collaboration', 'Real-Time Speed', 'Vision Analysis', 'Platform Support'],
+          datasets: [
+            {
+              label: 'MeetingMind',
+              data: [100, 95, 98, 90, 95],
+              backgroundColor: '#10B981',
+              borderColor: '#10B981',
+              borderWidth: 1
+            },
+            {
+              label: 'Competitor A',
+              data: [0, 75, 60, 50, 80],
+              backgroundColor: '#0EA5E9',
+              borderColor: '#0EA5E9',
+              borderWidth: 1
+            },
+            {
+              label: 'Competitor B',
+              data: [30, 65, 70, 40, 60],
+              backgroundColor: 'rgba(248, 250, 252, 0.5)',
+              borderColor: 'rgba(248, 250, 252, 0.5)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: {
+                color: 'rgba(255, 255, 255, 0.1)'
+              },
+              ticks: {
+                color: '#F8FAFC'
+              }
+            },
+            y: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                color: '#F8FAFC',
+                font: {
+                  weight: 'bold'
+                }
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#F8FAFC',
+                font: {
+                  size: 14
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(30, 41, 59, 0.8)',
+              titleColor: '#0EA5E9',
+              bodyColor: '#F8FAFC',
+              borderColor: '#10B981',
+              borderWidth: 1
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
