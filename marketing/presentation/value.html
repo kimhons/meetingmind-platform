@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #1E293B;
+        color: #F8FAFC;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      h1 {
+        color: #0EA5E9;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      
+      .accent {
+        color: #10B981;
+      }
+      
+      .value-box {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border-radius: 8px;
+        padding: 16px;
+        border-left: 4px solid #10B981;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slide-container p-16">
+      <h1 class="mb-8">Transform Your Professional Impact</h1>
+      
+      <div class="flex flex-row space-x-8">
+        <div class="w-1/2">
+          <div style="height: 400px;">
+            <canvas id="impactChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="w-1/2 flex flex-col justify-center space-y-6">
+          <div class="value-box">
+            <p class="text-xl font-semibold mb-2"><i class="fas fa-chart-line mr-2 accent"></i> Measurable ROI</p>
+            <p class="text-base opacity-80">Average 27% increase in meeting productivity and 32% improvement in decision quality</p>
+          </div>
+          
+          <div class="value-box">
+            <p class="text-xl font-semibold mb-2"><i class="fas fa-handshake mr-2 accent"></i> Career Advancement</p>
+            <p class="text-base opacity-80">Users report 3x faster promotion rates and 41% higher performance ratings</p>
+          </div>
+          
+          <div class="value-box">
+            <p class="text-xl font-semibold mb-2"><i class="fas fa-lightbulb mr-2 accent"></i> Strategic Advantage</p>
+            <p class="text-base opacity-80">86% of users report winning more negotiations and securing better terms</p>
+          </div>
+          
+          <div class="mt-6 p-4 bg-opacity-10 bg-white rounded-lg">
+            <p class="text-xl font-semibold">Choose Your Path to Excellence</p>
+            <div class="flex justify-between mt-3">
+              <div class="text-center">
+                <p class="accent font-bold">Starter</p>
+                <p>$29/mo</p>
+              </div>
+              <div class="text-center">
+                <p class="accent font-bold">Pro</p>
+                <p>$79/mo</p>
+              </div>
+              <div class="text-center">
+                <p class="accent font-bold">Elite</p>
+                <p>$149/mo</p>
+              </div>
+              <div class="text-center">
+                <p class="accent font-bold">Enterprise</p>
+                <p>Custom</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      // Professional Impact Chart
+      const ctx = document.getElementById('impactChart').getContext('2d');
+      const impactChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Before MeetingMind', 'After MeetingMind'],
+          datasets: [
+            {
+              label: 'Meeting Effectiveness',
+              data: [42, 89],
+              backgroundColor: '#0EA5E9',
+              borderColor: '#0EA5E9',
+              borderWidth: 1
+            },
+            {
+              label: 'Strategic Decision Quality',
+              data: [38, 91],
+              backgroundColor: '#10B981',
+              borderColor: '#10B981',
+              borderWidth: 1
+            },
+            {
+              label: 'Negotiation Success Rate',
+              data: [45, 86],
+              backgroundColor: 'rgba(255, 255, 255, 0.5)',
+              borderColor: 'rgba(255, 255, 255, 0.8)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          indexAxis: 'y',
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 100,
+              grid: {
+                color: 'rgba(255, 255, 255, 0.1)'
+              },
+              ticks: {
+                color: '#F8FAFC'
+              },
+              title: {
+                display: true,
+                text: 'Effectiveness Score (%)',
+                color: '#F8FAFC'
+              }
+            },
+            y: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                color: '#F8FAFC'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: '#F8FAFC',
+                font: {
+                  size: 12
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(30, 41, 59, 0.8)',
+              titleColor: '#0EA5E9',
+              bodyColor: '#F8FAFC',
+              borderColor: '#10B981',
+              borderWidth: 1
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
