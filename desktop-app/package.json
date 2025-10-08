@@ -1,0 +1,149 @@
+{
+  "name": "meetingmind-desktop",
+  "version": "1.0.0",
+  "description": "MeetingMind - AI Meeting Assistant Desktop Application",
+  "main": "main-with-stealth.js",
+  "homepage": "./",
+  "author": {
+    "name": "MeetingMind Team",
+    "email": "team@meetingmind.com",
+    "url": "https://meetingmind.com"
+  },
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux",
+    "dist": "npm run build",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.meetingmind.desktop",
+    "productName": "MeetingMind",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main-with-stealth.js",
+      "preload.js",
+      "overlay.html",
+      "legal-disclaimer.html",
+      "ai-settings.html",
+      "ai-service-enhanced.js",
+      "screen-capture.js",
+      "audio-processor.js",
+      "audio-mode-toggle.js",
+      "stealth-audio-implementation.js",
+      "stealth-capabilities.js",
+      "stealth-audio-methods.js",
+      "legal-disclaimer-system.js",
+      "platform-integrations.js",
+      "real-time-processor.js",
+      "advanced-prompts.js",
+      "model-optimizer.js",
+      "desktop-features.js",
+      "dist/**/*",
+      "assets/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "category": "Office"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "meetingmind",
+      "repo": "desktop"
+    }
+  },
+  "devDependencies": {
+    "electron": "^38.2.2",
+    "electron-builder": "^26.0.12"
+  },
+  "keywords": [
+    "meeting",
+    "ai",
+    "assistant",
+    "productivity",
+    "desktop",
+    "electron"
+  ],
+  "dependencies": {
+    "@google-cloud/vision": "^5.3.3",
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.12.2",
+    "google-auth-library": "^10.4.0",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.2.0"
+  }
+}

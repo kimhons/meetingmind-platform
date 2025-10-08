@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Settings - MeetingMind</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 16px;
+        }
+
+        .status-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ef4444;
+        }
+
+        .status-dot.connected {
+            background: #10b981;
+        }
+
+        .status-text {
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .provider-section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .provider-tabs {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .provider-tab {
+            flex: 1;
+            padding: 12px 16px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .provider-tab.active {
+            background: white;
+            color: #3b82f6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .provider-content {
+            display: none;
+        }
+
+        .provider-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 14px;
+            background: white;
+        }
+
+        .form-help {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-test {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-test:hover {
+            background: #059669;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .feature-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background: #cbd5e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .toggle-switch.active {
+            background: #3b82f6;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(20px);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 AI Configuration</h1>
+            <p>Configure your AI provider for intelligent meeting assistance</p>
+        </div>
+
+        <div class="status-card">
+            <div class="status-indicator">
+                <div class="status-dot" id="statusDot"></div>
+                <span class="status-text" id="statusText">Checking AI connection...</span>
+            </div>
+            <div id="statusDetails" class="form-help"></div>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <div class="provider-section">
+            <h2 class="section-title">🔧 AI Provider</h2>
+            
+            <div class="provider-tabs">
+                <div class="provider-tab active" data-provider="openai">OpenAI</div>
+                <div class="provider-tab" data-provider="local">Local AI</div>
+            </div>
+
+            <!-- OpenAI Configuration -->
+            <div class="provider-content active" id="openai-content">
+                <div class="form-group">
+                    <label class="form-label" for="openai-key">API Key</label>
+                    <input type="password" id="openai-key" class="form-input" placeholder="sk-...">
+                    <div class="form-help">Your OpenAI API key. Get one at <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com</a></div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="openai-model">Model</label>
+                    <select id="openai-model" class="form-select">
+                        <option value="gpt-4">GPT-4 (Recommended)</option>
+                        <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="openai-base-url">Base URL (Optional)</label>
+                    <input type="url" id="openai-base-url" class="form-input" placeholder="https://api.openai.com/v1">
+                    <div class="form-help">Leave default unless using a custom endpoint</div>
+                </div>
+            </div>
+
+            <!-- Local AI Configuration -->
+            <div class="provider-content" id="local-content">
+                <div class="alert alert-info">
+                    <strong>Local AI Setup:</strong> Install Ollama or similar local AI service. 
+                    <a href="https://ollama.ai" target="_blank">Download Ollama</a>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="local-endpoint">Endpoint URL</label>
+                    <input type="url" id="local-endpoint" class="form-input" placeholder="http://localhost:11434">
+                    <div class="form-help">URL of your local AI service (Ollama default: http://localhost:11434)</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="local-model">Model Name</label>
+                    <input type="text" id="local-model" class="form-input" placeholder="llama2">
+                    <div class="form-help">Name of the model to use (e.g., llama2, mistral, codellama)</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="local-timeout">Timeout (ms)</label>
+                    <input type="number" id="local-timeout" class="form-input" value="30000" min="5000" max="120000">
+                    <div class="form-help">Request timeout in milliseconds</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="provider-section">
+            <h2 class="section-title">⚙️ AI Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-toggle">
+                        <div>
+                            <strong>Real-time Insights</strong>
+                            <div class="form-help">Live meeting analysis</div>
+                        </div>
+                        <div class="toggle-switch active" data-feature="realTimeInsights">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-toggle">
+                        <div>
+                            <strong>Knowledge Search</strong>
+                            <div class="form-help">AI-powered information lookup</div>
+                        </div>
+                        <div class="toggle-switch active" data-feature="knowledgeSearch">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-toggle">
+                        <div>
+                            <strong>Follow-up Generation</strong>
+                            <div class="form-help">Automated email creation</div>
+                        </div>
+                        <div class="toggle-switch active" data-feature="followUpGeneration">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-toggle">
+                        <div>
+                            <strong>Context Awareness</strong>
+                            <div class="form-help">Screen content analysis</div>
+                        </div>
+                        <div class="toggle-switch active" data-feature="contextAwareness">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-test" id="testBtn">🔍 Test Connection</button>
+            <button class="btn btn-primary" id="saveBtn">💾 Save Settings</button>
+            <button class="btn btn-secondary" id="cancelBtn">❌ Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSettings = {};
+        let currentProvider = 'openai';
+
+        // Initialize the settings page
+        async function init() {
+            try {
+                // Load current settings
+                currentSettings = await window.electronAPI.getAISettings();
+                currentProvider = currentSettings.provider || 'openai';
+                
+                // Update UI with current settings
+                updateUI();
+                
+                // Check AI status
+                await updateStatus();
+            } catch (error) {
+                showAlert('Error loading settings: ' + error.message, 'error');
+            }
+        }
+
+        function updateUI() {
+            // Update provider tabs
+            document.querySelectorAll('.provider-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.dataset.provider === currentProvider);
+            });
+            
+            document.querySelectorAll('.provider-content').forEach(content => {
+                content.classList.toggle('active', content.id === currentProvider + '-content');
+            });
+
+            // Update OpenAI settings
+            if (currentSettings.openai) {
+                document.getElementById('openai-key').value = currentSettings.openai.apiKey || '';
+                document.getElementById('openai-model').value = currentSettings.openai.model || 'gpt-4';
+                document.getElementById('openai-base-url').value = currentSettings.openai.baseURL || 'https://api.openai.com/v1';
+            }
+
+            // Update Local AI settings
+            if (currentSettings.local) {
+                document.getElementById('local-endpoint').value = currentSettings.local.endpoint || 'http://localhost:11434';
+                document.getElementById('local-model').value = currentSettings.local.model || 'llama2';
+                document.getElementById('local-timeout').value = currentSettings.local.timeout || 30000;
+            }
+
+            // Update feature toggles
+            if (currentSettings.features) {
+                Object.entries(currentSettings.features).forEach(([feature, enabled]) => {
+                    const toggle = document.querySelector(`[data-feature="${feature}"]`);
+                    if (toggle) {
+                        toggle.classList.toggle('active', enabled);
+                    }
+                });
+            }
+        }
+
+        async function updateStatus() {
+            try {
+                const status = await window.electronAPI.getAIStatus();
+                const statusDot = document.getElementById('statusDot');
+                const statusText = document.getElementById('statusText');
+                const statusDetails = document.getElementById('statusDetails');
+
+                if (status.isInitialized) {
+                    statusDot.classList.add('connected');
+                    statusText.textContent = `Connected to ${status.provider.toUpperCase()}`;
+                    statusDetails.textContent = `Provider: ${status.provider}, API Key: ${status.hasApiKey ? 'Configured' : 'Missing'}`;
+                } else {
+                    statusDot.classList.remove('connected');
+                    statusText.textContent = 'Not Connected';
+                    statusDetails.textContent = 'AI service not configured or unavailable';
+                }
+            } catch (error) {
+                console.error('Failed to get AI status:', error);
+            }
+        }
+
+        function showAlert(message, type = 'info') {
+            const alertContainer = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            
+            alertContainer.innerHTML = '';
+            alertContainer.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.provider-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                currentProvider = tab.dataset.provider;
+                updateUI();
+            });
+        });
+
+        document.querySelectorAll('.toggle-switch').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                toggle.classList.toggle('active');
+            });
+        });
+
+        document.getElementById('testBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('testBtn');
+            btn.disabled = true;
+            btn.textContent = '🔄 Testing...';
+            
+            try {
+                // Save current settings first
+                await saveCurrentSettings();
+                
+                const result = await window.electronAPI.testAIConnection();
+                
+                if (result.success) {
+                    showAlert('✅ Connection successful!', 'success');
+                    await updateStatus();
+                } else {
+                    showAlert('❌ Connection failed: ' + result.message, 'error');
+                }
+            } catch (error) {
+                showAlert('❌ Test failed: ' + error.message, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '🔍 Test Connection';
+            }
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', async () => {
+            try {
+                await saveCurrentSettings();
+                showAlert('✅ Settings saved successfully!', 'success');
+                await updateStatus();
+            } catch (error) {
+                showAlert('❌ Failed to save settings: ' + error.message, 'error');
+            }
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', () => {
+            window.close();
+        });
+
+        async function saveCurrentSettings() {
+            const newSettings = {
+                provider: currentProvider,
+                openai: {
+                    apiKey: document.getElementById('openai-key').value,
+                    model: document.getElementById('openai-model').value,
+                    baseURL: document.getElementById('openai-base-url').value || 'https://api.openai.com/v1',
+                    maxTokens: 1000,
+                    temperature: 0.7
+                },
+                local: {
+                    endpoint: document.getElementById('local-endpoint').value || 'http://localhost:11434',
+                    model: document.getElementById('local-model').value || 'llama2',
+                    timeout: parseInt(document.getElementById('local-timeout').value) || 30000
+                },
+                features: {}
+            };
+
+            // Get feature toggles
+            document.querySelectorAll('.toggle-switch').forEach(toggle => {
+                const feature = toggle.dataset.feature;
+                if (feature) {
+                    newSettings.features[feature] = toggle.classList.contains('active');
+                }
+            });
+
+            const result = await window.electronAPI.saveAISettings(newSettings);
+            if (!result.success) {
+                throw new Error(result.error || 'Failed to save settings');
+            }
+            
+            currentSettings = result.settings;
+        }
+
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

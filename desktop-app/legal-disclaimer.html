@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Disclaimer - Stealth Mode Activation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 0;
+            overflow-y: auto;
+        }
+
+        .warning-banner {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 16px 20px;
+            margin: 0;
+        }
+
+        .warning-banner h3 {
+            color: #92400e;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .warning-banner p {
+            color: #78350f;
+            font-size: 14px;
+        }
+
+        .section {
+            padding: 24px 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            color: #1f2937;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-icon {
+            font-size: 20px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .section li::before {
+            content: "⚠️";
+            position: absolute;
+            left: 0;
+            top: 8px;
+        }
+
+        .acknowledgment-section {
+            background: #f9fafb;
+            padding: 24px 20px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .acknowledgment-section h2 {
+            color: #dc2626;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group {
+            margin-bottom: 16px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-item:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .checkbox-item.required {
+            border-left: 4px solid #dc2626;
+        }
+
+        .checkbox-item.critical {
+            background: #fef2f2;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            flex: 1;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        .severity-indicator {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .severity-critical {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .severity-high {
+            background: #fed7aa;
+            color: #9a3412;
+        }
+
+        .severity-medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .final-confirmation {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .final-confirmation h3 {
+            color: #f9fafb;
+            margin-bottom: 12px;
+        }
+
+        .final-confirmation .checkbox-item {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .final-confirmation .checkbox-item label {
+            color: #f3f4f6;
+        }
+
+        .actions {
+            padding: 20px;
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: #4b5563;
+        }
+
+        .btn-proceed {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-proceed:hover:not(:disabled) {
+            background: #b91c1c;
+        }
+
+        .btn-proceed:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .progress-indicator {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #dc2626, #b91c1c);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 8px;
+            text-align: center;
+        }
+
+        .legal-notice {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 16px 20px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .legal-notice h4 {
+            color: #f9fafb;
+            margin-bottom: 8px;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #e5e7eb;
+            z-index: 1000;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #dc2626, #b91c1c);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 16px;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚨 STEALTH MODE LEGAL DISCLAIMER</h1>
+            <div class="severity-badge">CRITICAL LEGAL WARNING</div>
+        </div>
+
+        <div class="warning-banner">
+            <h3>⚠️ USER RESPONSIBILITY FRAMEWORK</h3>
+            <p>You are choosing to record meetings using this software. You assume full legal responsibility for compliance with all applicable laws and regulations.</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2><span class="section-icon">👤</span>User Responsibility and Control</h2>
+                <ul>
+                    <li>YOU, the user, are choosing to record meetings using this software</li>
+                    <li>YOU control when and how the software operates</li>
+                    <li>YOU are responsible for obtaining all necessary consents</li>
+                    <li>YOU must comply with all applicable laws in your jurisdiction</li>
+                    <li>The software provider assumes NO responsibility for your usage</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">⚖️</span>Legal Obligations and Compliance</h2>
+                <ul>
+                    <li>Recording conversations may require consent from ALL participants</li>
+                    <li>Wiretapping laws vary by jurisdiction and can carry criminal penalties</li>
+                    <li>Privacy laws (GDPR, CCPA, etc.) may apply to recorded data</li>
+                    <li>Corporate policies may prohibit unauthorized recording</li>
+                    <li>Meeting platform Terms of Service may be violated</li>
+                    <li>You must research and comply with ALL applicable laws</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">🚔</span>Potential Criminal and Civil Liability</h2>
+                <ul>
+                    <li>Unauthorized recording may constitute wiretapping (FELONY in many jurisdictions)</li>
+                    <li>Privacy law violations can result in fines up to €20M or 4% of revenue (GDPR)</li>
+                    <li>Civil lawsuits from recorded parties are possible</li>
+                    <li>Criminal prosecution is possible in many jurisdictions</li>
+                    <li>Employment termination may result from policy violations</li>
+                    <li>Professional licensing may be affected</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2><span class="section-icon">🔒</span>Technical and Security Risks</h2>
+                <ul>
+                    <li>Stealth features may be detected by security software</li>
+                    <li>Antivirus programs may flag the software as malicious</li>
+                    <li>Corporate security systems may detect and block usage</li>
+                    <li>System instability or crashes may occur</li>
+                    <li>Data may be lost or corrupted during stealth operation</li>
+                    <li>Software updates may break stealth functionality</li>
+                </ul>
+            </div>
+
+            <div class="acknowledgment-section">
+                <h2>📝 REQUIRED LEGAL ACKNOWLEDGMENTS</h2>
+                <p style="margin-bottom: 20px; color: #dc2626; font-weight: 600;">
+                    You MUST check ALL boxes below to proceed. Each represents a legal acknowledgment.
+                </p>
+
+                <div class="progress-indicator">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0 of 10 acknowledgments completed</div>
+                </div>
+
+                <div class="checkbox-group">
+                    <h3 style="margin-bottom: 12px; color: #374151;">Legal Understanding</h3>
+                    
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="understand_laws" required>
+                        <label for="understand_laws">I have researched and understand the recording laws in my jurisdiction</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="understand_penalties" required>
+                        <label for="understand_penalties">I understand the potential criminal and civil penalties for unauthorized recording</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="understand_consent" required>
+                        <label for="understand_consent">I understand my obligation to obtain consent from all meeting participants</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <h3 style="margin-bottom: 12px; color: #374151;">Responsibility Acceptance</h3>
+                    
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="accept_responsibility" required>
+                        <label for="accept_responsibility">I accept full legal responsibility for my use of this software</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="no_provider_liability" required>
+                        <label for="no_provider_liability">I will not hold the software provider liable for my actions or legal consequences</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="own_legal_counsel" required>
+                        <label for="own_legal_counsel">I understand I should consult my own legal counsel for legal advice</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <h3 style="margin-bottom: 12px; color: #374151;">Compliance Commitment</h3>
+                    
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="obtain_consent" required>
+                        <label for="obtain_consent">I commit to obtaining all necessary consents before recording</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+
+                    <div class="checkbox-item required critical">
+                        <input type="checkbox" id="comply_laws" required>
+                        <label for="comply_laws">I commit to complying with all applicable laws and regulations</label>
+                        <span class="severity-indicator severity-critical">Critical</span>
+                    </div>
+
+                    <div class="checkbox-item required">
+                        <input type="checkbox" id="corporate_approval" required>
+                        <label for="corporate_approval">I will obtain appropriate corporate/professional approvals if required</label>
+                        <span class="severity-indicator severity-high">High</span>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <h3 style="margin-bottom: 12px; color: #374151;">Technical Understanding</h3>
+                    
+                    <div class="checkbox-item required">
+                        <input type="checkbox" id="detection_risk" required>
+                        <label for="detection_risk">I understand that stealth features may be detected by security software</label>
+                        <span class="severity-indicator severity-medium">Medium</span>
+                    </div>
+                </div>
+
+                <div class="final-confirmation">
+                    <h3>🔒 FINAL CONFIRMATION</h3>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="final_confirmation" required>
+                        <label for="final_confirmation">I have read, understood, and agree to all terms above. I am proceeding with full knowledge of the legal and technical risks.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legal-notice">
+            <h4>📋 LEGAL NOTICE</h4>
+            <p>This acknowledgment creates a legal record of your informed consent. Your IP address, timestamp, and device information will be logged. This acknowledgment may be used as evidence in legal proceedings. Proceeding constitutes acceptance of all terms and conditions.</p>
+        </div>
+
+        <div class="actions">
+            <button class="btn btn-cancel" onclick="cancelDisclaimer()">Cancel</button>
+            <button class="btn btn-proceed" id="proceedBtn" disabled onclick="proceedWithStealth()">
+                Proceed with Stealth Mode
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let totalCheckboxes = 0;
+        let checkedCount = 0;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            totalCheckboxes = checkboxes.length;
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+
+            // Update scroll progress
+            window.addEventListener('scroll', updateScrollProgress);
+            
+            updateProgress();
+        });
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            
+            const progress = (checkedCount / totalCheckboxes) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `${checkedCount} of ${totalCheckboxes} acknowledgments completed`;
+            
+            const proceedBtn = document.getElementById('proceedBtn');
+            proceedBtn.disabled = checkedCount < totalCheckboxes;
+            
+            if (checkedCount === totalCheckboxes) {
+                proceedBtn.textContent = 'All Requirements Met - Proceed with Stealth Mode';
+                proceedBtn.style.background = '#dc2626';
+            } else {
+                proceedBtn.textContent = `Complete ${totalCheckboxes - checkedCount} more acknowledgments`;
+                proceedBtn.style.background = '#9ca3af';
+            }
+        }
+
+        function updateScrollProgress() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            document.getElementById('scrollProgress').style.width = scrollPercent + '%';
+        }
+
+        function cancelDisclaimer() {
+            if (window.electronAPI) {
+                window.electronAPI.closeWindow();
+            } else {
+                window.close();
+            }
+        }
+
+        function proceedWithStealth() {
+            if (checkedCount < totalCheckboxes) {
+                alert('Please complete all required acknowledgments before proceeding.');
+                return;
+            }
+
+            // Collect acknowledgment data
+            const acknowledgmentData = {
+                checkboxes: {},
+                finalConfirmation: document.getElementById('final_confirmation').checked,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                ipAddress: 'client-side-unknown' // Would be filled by main process
+            };
+
+            // Collect all checkbox states
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                if (checkbox.id !== 'final_confirmation') {
+                    acknowledgmentData.checkboxes[checkbox.id] = checkbox.checked;
+                }
+            });
+
+            // Send to main process
+            if (window.electronAPI) {
+                window.electronAPI.processStealthAcknowledgment(acknowledgmentData)
+                    .then(result => {
+                        if (result.success) {
+                            alert('Legal acknowledgment completed. Stealth mode activation proceeding.');
+                            window.electronAPI.closeWindow();
+                        } else {
+                            alert('Acknowledgment processing failed: ' + result.message);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error processing acknowledgment: ' + error.message);
+                    });
+            } else {
+                console.log('Acknowledgment data:', acknowledgmentData);
+                alert('Demo mode - acknowledgment data logged to console');
+            }
+        }
+
+        // Listen for disclaimer data from main process
+        if (window.electronAPI) {
+            window.electronAPI.onDisclaimerData((data) => {
+                console.log('Received disclaimer data:', data);
+                // Could populate additional disclaimer content here
+            });
+        }
+    </script>
+</body>
+</html>

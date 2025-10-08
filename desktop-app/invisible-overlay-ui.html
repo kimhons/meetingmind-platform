@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeetingMind - Invisible AI Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: transparent;
+            overflow: hidden;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Invisible Overlay Container */
+        .overlay-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999;
+            pointer-events: none;
+        }
+
+        /* Collaborative AI Insights Panel */
+        .ai-insights-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 380px;
+            max-height: 600px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto;
+        }
+
+        .ai-insights-panel.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Panel Header */
+        .panel-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ai-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .ai-status-text {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .minimize-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: color 0.2s;
+        }
+
+        .minimize-btn:hover {
+            color: #ffffff;
+        }
+
+        /* Collaborative AI Section */
+        .collaborative-ai {
+            padding: 16px 20px;
+        }
+
+        .ai-models-header {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .ai-models-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .ai-model-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-model-card.active {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .ai-model-name {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .ai-model-status {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 9px;
+        }
+
+        .ai-model-activity {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+            transform: translateX(-100%);
+            animation: activity 2s infinite;
+        }
+
+        @keyframes activity {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Real-time Insights */
+        .insights-section {
+            margin-bottom: 16px;
+        }
+
+        .insights-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .insights-title {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .insights-source {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 9px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .insight-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 3px solid #00ff88;
+            border-radius: 0 6px 6px 0;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .insight-text {
+            color: #ffffff;
+            font-size: 11px;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .insight-confidence {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 9px;
+        }
+
+        /* Suggested Responses */
+        .responses-section {
+            margin-bottom: 16px;
+        }
+
+        .response-suggestion {
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .response-suggestion:hover {
+            background: rgba(0, 123, 255, 0.2);
+            border-color: rgba(0, 123, 255, 0.5);
+        }
+
+        .response-text {
+            color: #ffffff;
+            font-size: 11px;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .response-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .response-type {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 9px;
+        }
+
+        .copy-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            font-size: 9px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: color 0.2s;
+        }
+
+        .copy-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Floating Action Button */
+        .floating-toggle {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            pointer-events: auto;
+        }
+
+        .floating-toggle:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .toggle-icon {
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        /* Minimized State */
+        .ai-insights-panel.minimized {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .ai-insights-panel.minimized .panel-content {
+            display: none;
+        }
+
+        .minimized-indicator {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        .ai-insights-panel.minimized .minimized-indicator {
+            display: block;
+        }
+
+        /* Quick Actions Bar */
+        .quick-actions {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        .quick-actions.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .quick-action-btn {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        .quick-action-btn:hover {
+            background: rgba(0, 0, 0, 0.95);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .quick-action-btn.active {
+            background: rgba(0, 255, 136, 0.2);
+            border-color: #00ff88;
+        }
+
+        /* Collaborative Processing Indicator */
+        .processing-indicator {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateX(-50%) translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: auto;
+        }
+
+        .processing-indicator.visible {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .processing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .processing-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #00ff88;
+            animation: processingPulse 1.5s infinite;
+        }
+
+        .processing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .processing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes processingPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .processing-text {
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-container">
+        <!-- Collaborative Processing Indicator -->
+        <div class="processing-indicator" id="processingIndicator">
+            <div class="processing-dots">
+                <div class="processing-dot"></div>
+                <div class="processing-dot"></div>
+                <div class="processing-dot"></div>
+            </div>
+            <span class="processing-text">AI Collaboration Active</span>
+        </div>
+
+        <!-- Main AI Insights Panel -->
+        <div class="ai-insights-panel visible" id="aiPanel">
+            <div class="floating-toggle" onclick="togglePanel()">
+                <span class="toggle-icon">🤖</span>
+            </div>
+
+            <div class="minimized-indicator">🧠</div>
+
+            <div class="panel-content">
+                <!-- Panel Header -->
+                <div class="panel-header">
+                    <div class="ai-status">
+                        <div class="ai-indicator"></div>
+                        <span class="ai-status-text">Collaborative AI Active</span>
+                    </div>
+                    <button class="minimize-btn" onclick="minimizePanel()">−</button>
+                </div>
+
+                <!-- Collaborative AI Models -->
+                <div class="collaborative-ai">
+                    <div class="ai-models-header">AI Collaboration</div>
+                    <div class="ai-models-grid">
+                        <div class="ai-model-card active">
+                            <div class="ai-model-activity"></div>
+                            <div class="ai-model-name">GPT-5</div>
+                            <div class="ai-model-status">Strategic Analysis</div>
+                        </div>
+                        <div class="ai-model-card active">
+                            <div class="ai-model-activity"></div>
+                            <div class="ai-model-name">Gemini Flash 2.5</div>
+                            <div class="ai-model-status">Real-time Processing</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Insights -->
+                <div class="insights-section">
+                    <div class="insights-header">
+                        <span class="insights-title">Live Insights</span>
+                        <span class="insights-source">Collaborative</span>
+                    </div>
+                    <div id="insightsContainer">
+                        <div class="insight-item">
+                            <div class="insight-text">Key decision point detected - budget allocation discussion</div>
+                            <div class="insight-confidence">Confidence: 94% • GPT-5 + Gemini</div>
+                        </div>
+                        <div class="insight-item">
+                            <div class="insight-text">Stakeholder concern identified about timeline feasibility</div>
+                            <div class="insight-confidence">Confidence: 87% • Multi-model analysis</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suggested Responses -->
+                <div class="responses-section">
+                    <div class="insights-header">
+                        <span class="insights-title">Smart Responses</span>
+                        <span class="insights-source">AI Generated</span>
+                    </div>
+                    <div id="responsesContainer">
+                        <div class="response-suggestion" onclick="copyResponse(this)">
+                            <div class="response-text">"I understand the timeline concerns. Let me propose a phased approach that addresses the key milestones while maintaining quality."</div>
+                            <div class="response-meta">
+                                <span class="response-type">Diplomatic • GPT-5</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                        </div>
+                        <div class="response-suggestion" onclick="copyResponse(this)">
+                            <div class="response-text">"Based on our current resources, I can commit to the core deliverables by Q2, with optional features following in Q3."</div>
+                            <div class="response-meta">
+                                <span class="response-type">Strategic • Gemini</span>
+                                <button class="copy-btn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Bar -->
+        <div class="quick-actions visible" id="quickActions">
+            <div class="quick-action-btn active" title="AI Insights">
+                🧠
+            </div>
+            <div class="quick-action-btn" title="Voice Mode">
+                🎤
+            </div>
+            <div class="quick-action-btn" title="Screen Analysis">
+                👁️
+            </div>
+            <div class="quick-action-btn" title="Settings">
+                ⚙️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Invisible Overlay AI System
+        class InvisibleAIOverlay {
+            constructor() {
+                this.isMinimized = false;
+                this.isProcessing = false;
+                this.insights = [];
+                this.responses = [];
+                
+                this.initializeSystem();
+                this.startCollaborativeProcessing();
+            }
+
+            initializeSystem() {
+                console.log('🤖 Initializing Invisible AI Overlay System');
+                
+                // Simulate collaborative AI processing
+                this.simulateCollaborativeAI();
+                
+                // Auto-hide processing indicator after initial load
+                setTimeout(() => {
+                    this.hideProcessingIndicator();
+                }, 3000);
+            }
+
+            simulateCollaborativeAI() {
+                // Simulate GPT-5 and Gemini Flash 2.5 working together
+                setInterval(() => {
+                    this.generateCollaborativeInsight();
+                }, 8000);
+
+                setInterval(() => {
+                    this.generateSmartResponse();
+                }, 12000);
+            }
+
+            generateCollaborativeInsight() {
+                const insights = [
+                    {
+                        text: "Meeting energy shift detected - participants more engaged with visual presentation",
+                        confidence: "91% • Multi-model analysis",
+                        source: "collaborative"
+                    },
+                    {
+                        text: "Action item opportunity: Follow-up meeting needed for technical specifications",
+                        confidence: "88% • GPT-5 + Gemini",
+                        source: "collaborative"
+                    },
+                    {
+                        text: "Communication pattern suggests decision-maker is the person speaking now",
+                        confidence: "93% • Behavioral analysis",
+                        source: "collaborative"
+                    },
+                    {
+                        text: "Budget discussion approaching - prepare cost-benefit talking points",
+                        confidence: "85% • Predictive analysis",
+                        source: "collaborative"
+                    }
+                ];
+
+                const randomInsight = insights[Math.floor(Math.random() * insights.length)];
+                this.addInsight(randomInsight);
+            }
+
+            generateSmartResponse() {
+                const responses = [
+                    {
+                        text: "That's an excellent point. How do you see this impacting our Q4 objectives?",
+                        type: "Engaging • GPT-5",
+                        category: "question"
+                    },
+                    {
+                        text: "I'd like to build on that idea. What if we also considered the long-term implications?",
+                        type: "Collaborative • Gemini",
+                        category: "building"
+                    },
+                    {
+                        text: "Let me make sure I understand correctly - are you suggesting we prioritize speed over thoroughness?",
+                        type: "Clarifying • GPT-5",
+                        category: "clarification"
+                    },
+                    {
+                        text: "Based on our previous discussions, this aligns well with our strategic goals.",
+                        type: "Supportive • Gemini",
+                        category: "agreement"
+                    }
+                ];
+
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                this.addResponse(randomResponse);
+            }
+
+            addInsight(insight) {
+                const container = document.getElementById('insightsContainer');
+                const insightElement = document.createElement('div');
+                insightElement.className = 'insight-item';
+                insightElement.innerHTML = `
+                    <div class="insight-text">${insight.text}</div>
+                    <div class="insight-confidence">Confidence: ${insight.confidence}</div>
+                `;
+
+                container.insertBefore(insightElement, container.firstChild);
+
+                // Keep only the latest 3 insights
+                while (container.children.length > 3) {
+                    container.removeChild(container.lastChild);
+                }
+            }
+
+            addResponse(response) {
+                const container = document.getElementById('responsesContainer');
+                const responseElement = document.createElement('div');
+                responseElement.className = 'response-suggestion';
+                responseElement.onclick = () => this.copyResponse(responseElement);
+                responseElement.innerHTML = `
+                    <div class="response-text">${response.text}</div>
+                    <div class="response-meta">
+                        <span class="response-type">${response.type}</span>
+                        <button class="copy-btn">Copy</button>
+                    </div>
+                `;
+
+                container.insertBefore(responseElement, container.firstChild);
+
+                // Keep only the latest 2 responses
+                while (container.children.length > 2) {
+                    container.removeChild(container.lastChild);
+                }
+            }
+
+            showProcessingIndicator() {
+                const indicator = document.getElementById('processingIndicator');
+                indicator.classList.add('visible');
+            }
+
+            hideProcessingIndicator() {
+                const indicator = document.getElementById('processingIndicator');
+                indicator.classList.remove('visible');
+            }
+
+            copyResponse(element) {
+                const text = element.querySelector('.response-text').textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const copyBtn = element.querySelector('.copy-btn');
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                    }, 1000);
+                });
+            }
+
+            startCollaborativeProcessing() {
+                // Show processing indicator when AI is actively analyzing
+                setInterval(() => {
+                    if (Math.random() > 0.7) {
+                        this.showProcessingIndicator();
+                        setTimeout(() => {
+                            this.hideProcessingIndicator();
+                        }, 2000);
+                    }
+                }, 15000);
+            }
+        }
+
+        // Global functions for UI interactions
+        function togglePanel() {
+            const panel = document.getElementById('aiPanel');
+            panel.classList.toggle('visible');
+        }
+
+        function minimizePanel() {
+            const panel = document.getElementById('aiPanel');
+            panel.classList.toggle('minimized');
+        }
+
+        function copyResponse(element) {
+            aiOverlay.copyResponse(element);
+        }
+
+        // Initialize the invisible AI overlay system
+        const aiOverlay = new InvisibleAIOverlay();
+
+        console.log('🚀 MeetingMind Invisible AI Overlay Loaded');
+    </script>
+</body>
+</html>
