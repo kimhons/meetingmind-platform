@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Preparation - MeetingMind</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .interview-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .interview-details {
+            display: flex;
+            gap: 30px;
+            color: #6c757d;
+            font-size: 16px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        .content-area {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-navigation {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            background: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            color: #6c757d;
+        }
+
+        .tab-btn.active {
+            background: #3498db;
+            color: white;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .company-profile {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .company-info h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .company-info p {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+
+        .preparation-timeline {
+            margin: 25px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+
+        .timeline-day {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3498db;
+            min-width: 60px;
+        }
+
+        .timeline-content h4 {
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .timeline-content p {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .timeline-tasks {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        .timeline-tasks li {
+            padding: 5px 0;
+            color: #495057;
+        }
+
+        .timeline-tasks li:before {
+            content: "✓";
+            color: #2ecc71;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+
+        .progress-card {
+            text-align: center;
+        }
+
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(#3498db 0deg 288deg, #e9ecef 288deg 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .progress-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            z-index: 1;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .question-practice {
+            margin: 25px 0;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .question-tips {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .question-tips h5 {
+            color: #1976d2;
+            margin-bottom: 8px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .floating-coach {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+            animation: pulse 2s infinite;
+            z-index: 1000;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .keyboard-shortcuts {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 15px;
+        }
+
+        .shortcut {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+
+        .shortcut-key {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="interview-title" id="interviewTitle">Google - Senior Software Engineer</div>
+            <div class="interview-details">
+                <span>📅 March 15, 2024</span>
+                <span>⏰ 2:00 PM PST</span>
+                <span>🎭 Behavioral Interview</span>
+                <span>⏱️ 3 days to prepare</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="content-area">
+                <div class="tab-navigation">
+                    <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+                    <button class="tab-btn" onclick="showTab('company')">Company Intel</button>
+                    <button class="tab-btn" onclick="showTab('questions')">Practice</button>
+                    <button class="tab-btn" onclick="showTab('timeline')">Timeline</button>
+                </div>
+
+                <!-- Overview Tab -->
+                <div id="overview" class="tab-content active">
+                    <h2>Interview Preparation Overview</h2>
+                    
+                    <div class="company-profile">
+                        <div class="company-logo">🔍</div>
+                        <div class="company-info">
+                            <h3>Google</h3>
+                            <p>Focus on leadership principles, technical communication, and team collaboration. Google values innovation, user focus, and the ability to work in ambiguous situations.</p>
+                        </div>
+                    </div>
+
+                    <div class="preparation-timeline">
+                        <h3>Your 3-Day Preparation Plan</h3>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-day">Day 1</div>
+                            <div class="timeline-content">
+                                <h4>Company Research & Culture Deep Dive</h4>
+                                <p>⏱️ 2 hours | 🎯 High Priority</p>
+                                <ul class="timeline-tasks">
+                                    <li>Google's leadership principles and engineering culture</li>
+                                    <li>Recent product launches and strategic initiatives</li>
+                                    <li>Team dynamics and collaboration expectations</li>
+                                </ul>
+                                <button class="btn btn-primary" onclick="startDay(1)">Start Day 1</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-day">Day 2</div>
+                            <div class="timeline-content">
+                                <h4>STAR Stories & Question Practice</h4>
+                                <p>⏱️ 3 hours | 🎯 Critical</p>
+                                <ul class="timeline-tasks">
+                                    <li>Develop 7 compelling STAR method stories</li>
+                                    <li>Practice 15 high-priority behavioral questions</li>
+                                    <li>Record and review practice sessions</li>
+                                </ul>
+                                <button class="btn btn-secondary" onclick="startDay(2)">Preview Day 2</button>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-day">Day 3</div>
+                            <div class="timeline-content">
+                                <h4>Mock Interview & Final Review</h4>
+                                <p>⏱️ 1.5 hours | 🎯 Essential</p>
+                                <ul class="timeline-tasks">
+                                    <li>Full mock interview with AI feedback</li>
+                                    <li>Review key talking points</li>
+                                    <li>Confidence building techniques</li>
+                                </ul>
+                                <button class="btn btn-secondary" onclick="startDay(3)">Preview Day 3</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Intel Tab -->
+                <div id="company" class="tab-content">
+                    <h2>Google Intelligence Brief</h2>
+                    
+                    <div style="background: #e3f2fd; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h3 style="color: #1976d2; margin-bottom: 15px;">🎯 Key Success Factors</h3>
+                        <ul style="margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Innovation Mindset:</strong> Demonstrate creative problem-solving</li>
+                            <li><strong>User Focus:</strong> Always consider end-user impact</li>
+                            <li><strong>Collaboration:</strong> Show ability to work across teams</li>
+                            <li><strong>Technical Excellence:</strong> Deep technical knowledge with clear communication</li>
+                        </ul>
+                    </div>
+
+                    <h3>Recent Company Updates</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Q1 2024:</strong> Major AI initiatives launched, focus on responsible AI development</p>
+                        <p><strong>Leadership:</strong> Emphasis on sustainable technology and global impact</p>
+                        <p><strong>Culture:</strong> Continued focus on psychological safety and inclusive teams</p>
+                    </div>
+
+                    <h3>Interview Process Insights</h3>
+                    <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Typical Flow:</strong> 45-60 minutes, 4-5 behavioral questions, 1-2 technical scenarios</p>
+                        <p><strong>Interviewer Style:</strong> Collaborative, deep-dive follow-ups, scenario-based</p>
+                        <p><strong>Success Indicators:</strong> Specific examples, measurable impact, learning mindset</p>
+                    </div>
+                </div>
+
+                <!-- Questions Tab -->
+                <div id="questions" class="tab-content">
+                    <h2>Practice Questions</h2>
+                    
+                    <div class="question-practice">
+                        <div class="question-card">
+                            <div class="question-text">
+                                "Tell me about a time you had to lead a team through a challenging technical problem."
+                            </div>
+                            <div class="question-tips">
+                                <h5>💡 STAR Method Framework:</h5>
+                                <p><strong>Situation:</strong> Complex technical challenge affecting users<br>
+                                <strong>Task:</strong> Lead team to resolution<br>
+                                <strong>Action:</strong> Your specific leadership approach<br>
+                                <strong>Result:</strong> Measurable outcome and learning</p>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <button class="btn btn-primary" onclick="practiceQuestion(1)">🎤 Practice</button>
+                                <button class="btn btn-secondary" onclick="viewTips(1)">💡 More Tips</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <div class="question-text">
+                                "Describe a situation where you had to work with a difficult stakeholder."
+                            </div>
+                            <div class="question-tips">
+                                <h5>🎯 Focus Areas:</h5>
+                                <p>Communication skills, conflict resolution, stakeholder management, finding common ground</p>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <button class="btn btn-primary" onclick="practiceQuestion(2)">🎤 Practice</button>
+                                <button class="btn btn-secondary" onclick="viewTips(2)">💡 More Tips</button>
+                            </div>
+                        </div>
+
+                        <div class="question-card">
+                            <div class="question-text">
+                                "How do you handle ambiguous requirements in a project?"
+                            </div>
+                            <div class="question-tips">
+                                <h5>🔍 Google Values:</h5>
+                                <p>Comfort with ambiguity, structured thinking, stakeholder engagement, iterative approach</p>
+                            </div>
+                            <div style="margin-top: 15px;">
+                                <button class="btn btn-primary" onclick="practiceQuestion(3)">🎤 Practice</button>
+                                <button class="btn btn-secondary" onclick="viewTips(3)">💡 More Tips</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Tab -->
+                <div id="timeline" class="tab-content">
+                    <h2>Detailed Preparation Timeline</h2>
+                    
+                    <div style="background: #e8f5e8; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h3 style="color: #2e7d32;">📊 Success Probability: 87%</h3>
+                        <p>With full preparation completion, your success probability increases to 87% based on similar candidate profiles.</p>
+                    </div>
+
+                    <!-- Detailed timeline would go here -->
+                    <div style="text-align: center; padding: 40px; color: #6c757d;">
+                        <p>Detailed timeline view with hour-by-hour breakdown, resource links, and progress tracking.</p>
+                        <button class="btn btn-primary" style="margin-top: 20px;">Customize Timeline</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <!-- Progress Card -->
+                <div class="sidebar-card progress-card">
+                    <h3>Preparation Progress</h3>
+                    <div class="progress-circle">
+                        <div class="progress-text">80%</div>
+                    </div>
+                    <p>You're well prepared! Complete the remaining items for optimal confidence.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="sidebar-card">
+                    <h3>Quick Stats</h3>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">15</div>
+                            <div class="stat-label">Questions Practiced</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">STAR Stories</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">2.5h</div>
+                            <div class="stat-label">Time Invested</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">87%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="sidebar-card">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons" style="flex-direction: column;">
+                        <button class="btn btn-success" onclick="startLiveCoaching()">🚀 Start Live Coaching</button>
+                        <button class="btn btn-primary" onclick="mockInterview()">🎭 Mock Interview</button>
+                        <button class="btn btn-secondary" onclick="exportPrep()">📄 Export Prep Guide</button>
+                    </div>
+                </div>
+
+                <!-- Keyboard Shortcuts -->
+                <div class="sidebar-card">
+                    <h3>Keyboard Shortcuts</h3>
+                    <div class="keyboard-shortcuts">
+                        <div class="shortcut">
+                            <span>Start Live Coaching</span>
+                            <span class="shortcut-key">Ctrl+Shift+C</span>
+                        </div>
+                        <div class="shortcut">
+                            <span>Quick Notes</span>
+                            <span class="shortcut-key">Ctrl+Shift+N</span>
+                        </div>
+                        <div class="shortcut">
+                            <span>Hide All Windows</span>
+                            <span class="shortcut-key">Ctrl+Shift+H</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating AI Coach -->
+    <div class="floating-coach" onclick="showCoachingTip()">🤖</div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div id="notification-text">Welcome to Interview Preparation!</div>
+    </div>
+
+    <script>
+        let currentInterview = null;
+
+        // Tab navigation
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Interview preparation functions
+        function startDay(day) {
+            showNotification(`Starting Day ${day} preparation...`);
+            // Here you would integrate with the backend preparation system
+        }
+
+        function practiceQuestion(questionId) {
+            showNotification('Opening practice session...');
+            // Integrate with practice system
+        }
+
+        function viewTips(questionId) {
+            showNotification('Loading additional tips...');
+            // Show detailed tips modal
+        }
+
+        function startLiveCoaching() {
+            if (window.electronAPI) {
+                window.electronAPI.startLiveCoaching(currentInterview);
+            }
+            showNotification('Starting live coaching mode...');
+        }
+
+        function mockInterview() {
+            showNotification('Launching mock interview...');
+            // Start mock interview session
+        }
+
+        function exportPrep() {
+            if (window.electronAPI) {
+                window.electronAPI.exportInterviewReport(currentInterview);
+            }
+            showNotification('Exporting preparation guide...');
+        }
+
+        function showCoachingTip() {
+            const tips = [
+                "Remember to use the STAR method for behavioral questions!",
+                "Practice your stories out loud for better delivery.",
+                "Research the interviewer on LinkedIn if possible.",
+                "Prepare thoughtful questions about the role and team.",
+                "Stay calm and take a moment to think before answering."
+            ];
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            showNotification(randomTip);
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notification-text');
+            
+            notificationText.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Listen for data from main process
+        if (window.electronAPI) {
+            window.electronAPI.onLoadInterviewData((data) => {
+                currentInterview = data;
+                updateUI(data);
+            });
+        }
+
+        function updateUI(interviewData) {
+            if (interviewData) {
+                document.getElementById('interviewTitle').textContent = 
+                    `${interviewData.company} - ${interviewData.role}`;
+                // Update other UI elements with interview data
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showNotification('Interview preparation loaded successfully!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Coaching - MeetingMind</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            user-select: none;
+            -webkit-app-region: drag;
+        }
+
+        .overlay-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            -webkit-app-region: drag;
+        }
+
+        .header-title {
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+            -webkit-app-region: no-drag;
+        }
+
+        .control-btn {
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: background 0.2s;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            -webkit-app-region: no-drag;
+        }
+
+        .current-question {
+            background: #e3f2fd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #2196f3;
+        }
+
+        .question-type {
+            font-size: 12px;
+            color: #1976d2;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .question-text {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .suggestions {
+            margin-bottom: 15px;
+        }
+
+        .suggestion-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid #28a745;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .suggestion-item.high-priority {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .suggestion-item.medium-priority {
+            border-left-color: #ffc107;
+            background: #fffbf0;
+        }
+
+        .suggestion-header {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .priority-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .priority-high { background: #dc3545; }
+        .priority-medium { background: #ffc107; color: #333; }
+        .priority-low { background: #28a745; }
+
+        .metrics {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .metrics-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .metric-value {
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .metric-bar {
+            width: 60px;
+            height: 4px;
+            background: #e9ecef;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-left: 8px;
+        }
+
+        .metric-fill {
+            height: 100%;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .confidence { background: #9b59b6; }
+        .clarity { background: #3498db; }
+        .energy { background: #e74c3c; }
+        .timing { background: #2ecc71; }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-btn.primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .action-btn.secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .action-btn.danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .emergency-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.2s;
+        }
+
+        .emergency-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .timer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .notes-section {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .notes-header {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 11px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .notes-content {
+            padding: 8px 12px;
+            min-height: 60px;
+            font-size: 11px;
+            border: none;
+            outline: none;
+            resize: none;
+            width: 100%;
+        }
+
+        .minimize-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            border: none;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            -webkit-app-region: no-drag;
+        }
+
+        .minimized {
+            height: 40px !important;
+        }
+
+        .minimized .content {
+            display: none;
+        }
+
+        .coaching-tip {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .tip-icon {
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .scrollbar-thin {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-container">
+        <div class="header">
+            <div class="header-title">
+                <div class="status-indicator"></div>
+                Live Coaching
+            </div>
+            <div class="header-controls">
+                <button class="control-btn" onclick="minimizeOverlay()" title="Minimize">−</button>
+                <button class="control-btn" onclick="closeOverlay()" title="Close">×</button>
+            </div>
+        </div>
+
+        <div class="content scrollbar-thin">
+            <!-- Current Question Analysis -->
+            <div class="current-question">
+                <div class="question-type">BEHAVIORAL QUESTION DETECTED</div>
+                <div class="question-text" id="currentQuestion">
+                    "Tell me about a time you had to work with a difficult team member."
+                </div>
+            </div>
+
+            <!-- AI Coaching Tip -->
+            <div class="coaching-tip">
+                <span class="tip-icon">💡</span>
+                <strong>STAR Method:</strong> Structure your response with Situation, Task, Action, Result. Focus on your specific actions and the positive outcome.
+            </div>
+
+            <!-- Real-time Suggestions -->
+            <div class="suggestions">
+                <div class="suggestion-item high-priority">
+                    <div class="suggestion-header">
+                        <span>🎯 Response Strategy</span>
+                        <span class="priority-badge priority-high">HIGH</span>
+                    </div>
+                    Choose a real example that shows conflict resolution and team collaboration skills.
+                </div>
+
+                <div class="suggestion-item medium-priority">
+                    <div class="suggestion-header">
+                        <span>⏱️ Timing</span>
+                        <span class="priority-badge priority-medium">MED</span>
+                    </div>
+                    Aim for 2-3 minute response. You're currently at 45 seconds.
+                </div>
+
+                <div class="suggestion-item">
+                    <div class="suggestion-header">
+                        <span>💬 Communication</span>
+                        <span class="priority-badge priority-low">LOW</span>
+                    </div>
+                    Maintain eye contact and speak clearly. Your energy level is good.
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="metrics">
+                <div class="metrics-title">📊 Real-time Performance</div>
+                
+                <div class="metric-item">
+                    <span class="metric-label">Confidence</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill confidence" style="width: 80%;"></div>
+                    </div>
+                    <span class="metric-value">80%</span>
+                </div>
+
+                <div class="metric-item">
+                    <span class="metric-label">Clarity</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill clarity" style="width: 75%;"></div>
+                    </div>
+                    <span class="metric-value">75%</span>
+                </div>
+
+                <div class="metric-item">
+                    <span class="metric-label">Energy</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill energy" style="width: 85%;"></div>
+                    </div>
+                    <span class="metric-value">85%</span>
+                </div>
+
+                <div class="metric-item">
+                    <span class="metric-label">Timing</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill timing" style="width: 90%;"></div>
+                    </div>
+                    <span class="metric-value">90%</span>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn primary" onclick="getHelp()">🆘 Help</button>
+                <button class="action-btn secondary" onclick="takeNote()">📝 Note</button>
+                <button class="action-btn secondary" onclick="muteCoaching()">🔇 Mute</button>
+                <button class="action-btn primary" onclick="nextTip()">💡 Tip</button>
+            </div>
+
+            <!-- Quick Notes -->
+            <div class="notes-section">
+                <div class="notes-header">📝 Quick Notes</div>
+                <textarea class="notes-content" placeholder="Jot down key points..." id="quickNotes"></textarea>
+            </div>
+
+            <!-- Emergency Section -->
+            <div class="emergency-section">
+                <div style="font-size: 12px; font-weight: 600; margin-bottom: 5px;">⚠️ Need Help?</div>
+                <div style="font-size: 10px; margin-bottom: 8px;">If you're struggling, use these emergency strategies</div>
+                <button class="emergency-btn" onclick="emergencyHelp()">Emergency Coaching</button>
+            </div>
+        </div>
+
+        <div class="timer" id="interviewTimer">
+            Interview Time: 00:15:30
+        </div>
+    </div>
+
+    <script>
+        let isMinimized = false;
+        let isMuted = false;
+        let startTime = Date.now();
+        let currentInterview = null;
+
+        // Initialize coaching overlay
+        function initializeCoaching(interviewData) {
+            currentInterview = interviewData;
+            updateUI();
+            startTimer();
+        }
+
+        function updateUI() {
+            if (currentInterview) {
+                // Update UI based on interview data
+                console.log('Coaching initialized for:', currentInterview);
+            }
+        }
+
+        function startTimer() {
+            setInterval(() => {
+                const elapsed = Date.now() - startTime;
+                const minutes = Math.floor(elapsed / 60000);
+                const seconds = Math.floor((elapsed % 60000) / 1000);
+                document.getElementById('interviewTimer').textContent = 
+                    `Interview Time: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        function minimizeOverlay() {
+            const container = document.querySelector('.overlay-container');
+            isMinimized = !isMinimized;
+            
+            if (isMinimized) {
+                container.classList.add('minimized');
+            } else {
+                container.classList.remove('minimized');
+            }
+        }
+
+        function closeOverlay() {
+            if (window.electronAPI) {
+                window.electronAPI.stopLiveCoaching();
+            }
+        }
+
+        function getHelp() {
+            // Show emergency help suggestions
+            showCoachingSuggestion("Take a deep breath. If stuck, say 'That's a great question, let me think about a specific example...' to buy time.");
+        }
+
+        function takeNote() {
+            document.getElementById('quickNotes').focus();
+        }
+
+        function muteCoaching() {
+            isMuted = !isMuted;
+            const btn = event.target;
+            btn.textContent = isMuted ? '🔊 Unmute' : '🔇 Mute';
+            
+            // Hide/show suggestions based on mute status
+            const suggestions = document.querySelector('.suggestions');
+            suggestions.style.opacity = isMuted ? '0.3' : '1';
+        }
+
+        function nextTip() {
+            const tips = [
+                "Use specific numbers and metrics in your examples",
+                "Show the impact of your actions on the team/company",
+                "Demonstrate learning and growth from challenges",
+                "Connect your experience to the role requirements",
+                "Ask clarifying questions if needed"
+            ];
+            
+            const randomTip = tips[Math.floor(Math.random() * tips.length)];
+            showCoachingSuggestion(randomTip);
+        }
+
+        function emergencyHelp() {
+            const emergencyStrategies = [
+                "Buy time: 'That's an interesting question, let me think of the best example...'",
+                "Clarify: 'Could you help me understand what specific aspect you're most interested in?'",
+                "Redirect: 'I have a great example that's similar...' then pivot to your strongest story",
+                "Be honest: 'I haven't encountered that exact situation, but here's how I'd approach it...'",
+                "Bridge: 'That reminds me of a time when...' then go to your prepared story"
+            ];
+            
+            const strategy = emergencyStrategies[Math.floor(Math.random() * emergencyStrategies.length)];
+            showCoachingSuggestion(strategy, 'emergency');
+        }
+
+        function showCoachingSuggestion(message, type = 'tip') {
+            // Create temporary suggestion
+            const suggestion = document.createElement('div');
+            suggestion.className = `suggestion-item ${type === 'emergency' ? 'high-priority' : ''}`;
+            suggestion.innerHTML = `
+                <div class="suggestion-header">
+                    <span>${type === 'emergency' ? '🚨 Emergency Strategy' : '💡 Coaching Tip'}</span>
+                    <span class="priority-badge ${type === 'emergency' ? 'priority-high' : 'priority-low'}">
+                        ${type === 'emergency' ? 'URGENT' : 'TIP'}
+                    </span>
+                </div>
+                ${message}
+            `;
+            
+            const suggestionsContainer = document.querySelector('.suggestions');
+            suggestionsContainer.insertBefore(suggestion, suggestionsContainer.firstChild);
+            
+            // Remove after 10 seconds
+            setTimeout(() => {
+                if (suggestion.parentNode) {
+                    suggestion.remove();
+                }
+            }, 10000);
+        }
+
+        // Listen for coaching updates from main process
+        if (window.electronAPI) {
+            window.electronAPI.onCoachingSuggestions((suggestions) => {
+                updateCoachingSuggestions(suggestions);
+            });
+
+            window.electronAPI.onInitializeCoaching((data) => {
+                initializeCoaching(data);
+            });
+        }
+
+        function updateCoachingSuggestions(analysisData) {
+            // Update current question
+            if (analysisData.questionDetected) {
+                document.getElementById('currentQuestion').textContent = 
+                    analysisData.detectedQuestion || "Question detected...";
+            }
+
+            // Update suggestions
+            const suggestionsContainer = document.querySelector('.suggestions');
+            suggestionsContainer.innerHTML = '';
+            
+            analysisData.suggestions.forEach(suggestion => {
+                const suggestionElement = document.createElement('div');
+                suggestionElement.className = `suggestion-item ${suggestion.priority}-priority`;
+                suggestionElement.innerHTML = `
+                    <div class="suggestion-header">
+                        <span>${getSuggestionIcon(suggestion.type)} ${suggestion.type.replace('_', ' ')}</span>
+                        <span class="priority-badge priority-${suggestion.priority}">${suggestion.priority.toUpperCase()}</span>
+                    </div>
+                    ${suggestion.message}
+                `;
+                suggestionsContainer.appendChild(suggestionElement);
+            });
+        }
+
+        function getSuggestionIcon(type) {
+            const icons = {
+                'response_structure': '🎯',
+                'timing': '⏱️',
+                'communication': '💬',
+                'content': '📝',
+                'energy': '⚡',
+                'clarification': '❓'
+            };
+            return icons[type] || '💡';
+        }
+
+        // Auto-save notes
+        document.getElementById('quickNotes').addEventListener('input', function() {
+            if (window.electronAPI) {
+                window.electronAPI.saveQuickNote(this.value);
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Coaching overlay loaded');
+        });
+    </script>
+</body>
+</html>
