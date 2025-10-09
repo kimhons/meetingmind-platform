@@ -7,7 +7,7 @@ import {
   Clock, Star, Eye, Mic, Camera, Globe, Lock, Award, CheckCircle, ArrowRight,
   Layers, Target, TrendingUp, BarChart3, Lightbulb, Headphones, Monitor,
   FileText, Settings, Crown, Building, Sparkles, Infinity, Calendar,
-  Database, Network, Cpu, Activity, Gauge, Radar, Binoculars, Rocket
+  Database, Network, Cpu, Activity, Gauge, Radar, Rocket
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
@@ -31,7 +31,7 @@ function App() {
     {
       id: 'predictive-intelligence',
       title: 'Predictive Meeting Intelligence',
-      icon: Binoculars,
+      icon: Eye,
       description: '87% accuracy in forecasting meeting outcomes and decision points',
       color: 'from-purple-600 to-pink-600',
       details: 'Advanced machine learning algorithms analyze conversation patterns, participant behavior, and historical data to predict likely outcomes, strategic opportunities, and potential roadblocks before they occur.'
@@ -260,7 +260,7 @@ function App() {
     {
       title: 'Predictive Intelligence',
       description: '87% accuracy in meeting outcome forecasting',
-      icon: Binoculars,
+      icon: Eye,
       advantage: 'vs. Reactive-only solutions'
     },
     {
@@ -408,9 +408,9 @@ function App() {
               </h1>
               
               <p className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-                The world's first platform combining <strong>GPT-5, Claude Sonnet 4.5, and Gemini Flash 2.5</strong> 
-                in revolutionary collaboration. Featuring predictive meeting intelligence, cross-meeting memory, 
-                and enterprise-grade security that transforms every business conversation.
+                The world's most advanced AI meeting intelligence platform combining <strong>GPT-5, Claude Sonnet 4.5, and Gemini Flash 2.5</strong> 
+                in revolutionary collaboration. Featuring 87% accurate predictive outcomes, job interview coaching, cross-meeting memory, 
+                enterprise knowledge integration, and military-grade security that transforms business conversations and career advancement.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -694,6 +694,122 @@ function App() {
                 </Card>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Job Interview Intelligence Section */}
+      <section id="interview" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white mb-4">
+              🎯 Revolutionary Career Advancement
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+              Job Interview Intelligence System
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              The world's most sophisticated interview preparation and live coaching platform. 
+              Transform your career with AI-powered interview intelligence that no competitor offers.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div>
+              <h3 className="text-3xl font-bold text-slate-800 mb-6">
+                Master Any Interview with Triple-AI Coaching
+              </h3>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
+                    <Building className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 mb-2">Company-Specific Intelligence</h4>
+                    <p className="text-slate-600">Deep profiles for Google, Amazon, Microsoft, Apple, and 1000+ companies with culture analysis, interview processes, and success strategies.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
+                    <Target className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 mb-2">Live Interview Coaching</h4>
+                    <p className="text-slate-600">Real-time coaching overlay during actual interviews with performance metrics, contextual suggestions, and emergency help strategies.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg">
+                    <Brain className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800 mb-2">Personalized Preparation</h4>
+                    <p className="text-slate-600">AI-generated preparation timelines, STAR method training, mock interviews, and success probability calculations tailored to your profile.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-white rounded-2xl shadow-2xl p-8">
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Rocket className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="text-2xl font-bold text-slate-800 mb-2">Interview Success Metrics</h4>
+              </div>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-600 mb-1">60%</div>
+                  <div className="text-sm text-slate-600">Success Rate Improvement</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-pink-600 mb-1">50%</div>
+                  <div className="text-sm text-slate-600">Preparation Time Reduction</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-purple-600 mb-1">1000+</div>
+                  <div className="text-sm text-slate-600">Company Profiles</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-pink-600 mb-1">10K+</div>
+                  <div className="text-sm text-slate-600">Practice Questions</div>
+                </div>
+              </div>
+              <div className="mt-6">
+                <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 text-white">
+                  Start Interview Preparation
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="bg-white shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="font-bold text-slate-800 mb-2">Technical Interviews</h4>
+                <p className="text-slate-600 text-sm">Coding challenges, system design, debugging scenarios with AI-powered practice and feedback.</p>
+              </CardContent>
+            </Card>
+            <Card className="bg-white shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <MessageSquare className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="font-bold text-slate-800 mb-2">Behavioral Interviews</h4>
+                <p className="text-slate-600 text-sm">STAR method mastery, leadership scenarios, cultural fit assessment with personalized coaching.</p>
+              </CardContent>
+            </Card>
+            <Card className="bg-white shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="h-6 w-6 text-white" />
+                </div>
+                <h4 className="font-bold text-slate-800 mb-2">Executive Interviews</h4>
+                <p className="text-slate-600 text-sm">Strategic vision, leadership philosophy, stakeholder management with C-level preparation.</p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
