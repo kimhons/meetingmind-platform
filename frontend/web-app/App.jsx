@@ -28,6 +28,30 @@ function App() {
       details: 'Revolutionary AI collaboration where three specialized models provide complementary insights'
     },
     {
+      id: 'predictive-outcomes',
+      title: 'Predictive Meeting Outcomes',
+      icon: TrendingUp,
+      description: 'AI-powered prediction of meeting outcomes and decision points',
+      color: 'from-purple-600 to-pink-600',
+      details: 'Advanced algorithms analyze conversation patterns to forecast likely outcomes and strategic opportunities'
+    },
+    {
+      id: 'multi-language',
+      title: 'Multi-Language Support',
+      icon: Globe,
+      description: 'Real-time translation and support for 95+ languages',
+      color: 'from-green-600 to-blue-600',
+      details: 'Comprehensive internationalization with real-time translation and localized AI processing'
+    },
+    {
+      id: 'enhanced-security',
+      title: 'Enhanced Security',
+      icon: Shield,
+      description: 'Enterprise-grade security with AES-256-GCM encryption',
+      color: 'from-red-600 to-orange-600',
+      details: 'Military-grade encryption, comprehensive audit logging, and granular security controls'
+    },
+    {
       id: 'invisible-overlay',
       title: 'Invisible Assistant',
       icon: Eye,
@@ -96,6 +120,9 @@ function App() {
       features: [
         'Single AI model (Gemini Flash 2.5)',
         'Basic meeting insights',
+        'Basic predictive outcomes',
+        '10 supported languages',
+        'Standard security level',
         'Standard audio processing',
         'Email follow-ups',
         '10 hours/month usage',
@@ -112,6 +139,9 @@ function App() {
       description: 'Advanced AI collaboration for professionals',
       features: [
         'Triple-AI collaboration (GPT-5, Claude, Gemini)',
+        'Advanced predictive outcomes with strategic suggestions',
+        '30 supported languages with real-time translation',
+        'High security level with session controls',
         'Invisible overlay interface',
         'Multi-vision analysis',
         'Real-time processing',
@@ -131,6 +161,9 @@ function App() {
       description: 'Executive-level intelligence for strategic professionals',
       features: [
         'Everything in Pro',
+        'Historical pattern analysis for predictions',
+        '60 languages with offline packs & custom terminology',
+        'Enterprise security with advanced audit logging',
         'Strategic business intelligence',
         'Advanced prompting & fine-tuning',
         'Custom AI model training',
@@ -150,11 +183,14 @@ function App() {
       description: 'Complete AI transformation for organizations',
       features: [
         'Everything in Elite',
+        'Custom prediction models with full training',
+        '95+ languages with custom language models',
+        'Custom security policies & compliance reporting',
         'On-premise deployment',
         'Custom integrations',
         'Team management',
         'Advanced security controls',
-        'Compliance certifications',
+        'Compliance certifications (SOC2, GDPR, HIPAA)',
         'Training & onboarding',
         '24/7 enterprise support'
       ],
@@ -537,6 +573,158 @@ function App() {
                         </>
                       )}
                       
+                      {activeFeature === 'predictive-outcomes' && (
+                        <>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                              <TrendingUp className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-slate-800 font-semibold">Predictive Outcomes Active</p>
+                              <p className="text-slate-600 text-sm">AI forecasting meeting direction and outcomes</p>
+                            </div>
+                          </div>
+                          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                            <p className="text-purple-800 text-sm mb-2">🔮 Outcome Prediction (87% confidence):</p>
+                            <p className="text-purple-700 text-sm">
+                              Meeting likely to conclude with budget approval. Decision point expected in 8 minutes.
+                            </p>
+                          </div>
+                          <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
+                            <p className="text-pink-800 text-sm mb-2">📊 Strategic Recommendation:</p>
+                            <p className="text-pink-700 text-sm">
+                              Prepare implementation timeline discussion. Client showing high engagement with technical details.
+                            </p>
+                          </div>
+                          <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                            <p className="text-indigo-800 text-sm mb-2">⏰ Decision Timeline:</p>
+                            <p className="text-indigo-700 text-sm">
+                              Next 3 minutes: Technical questions | 5-8 min: Budget discussion | 8+ min: Final decision
+                            </p>
+                          </div>
+                        </>
+                      )}
+                      
+                      {activeFeature === 'multi-language' && (
+                        <>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
+                              <Globe className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-slate-800 font-semibold">Multi-Language Support</p>
+                              <p className="text-slate-600 text-sm">Real-time translation across 95+ languages</p>
+                            </div>
+                          </div>
+                          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                            <p className="text-green-800 text-sm mb-2">🌍 Language Detection:</p>
+                            <p className="text-green-700 text-sm">
+                              Primary: English | Secondary: Spanish detected | Auto-translation: Active
+                            </p>
+                          </div>
+                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                            <p className="text-blue-800 text-sm mb-2">🔄 Real-time Translation:</p>
+                            <p className="text-blue-700 text-sm">
+                              "Excelente propuesta" → "Excellent proposal" | Confidence: 98% | Latency: 120ms
+                            </p>
+                          </div>
+                          <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
+                            <p className="text-teal-800 text-sm mb-2">🎯 Cultural Context:</p>
+                            <p className="text-teal-700 text-sm">
+                              Business context adapted for Latin American market. Formal tone maintained.
+                            </p>
+                          </div>
+                        </>
+                      )}
+                      
+                      {activeFeature === 'enhanced-security' && (
+                        <>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-orange-600 rounded-lg flex items-center justify-center">
+                              <Shield className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-slate-800 font-semibold">Enhanced Security Active</p>
+                              <p className="text-slate-600 text-sm">Enterprise-grade protection enabled</p>
+                            </div>
+                          </div>
+                          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                            <p className="text-red-800 text-sm mb-2">🔒 Encryption Status:</p>
+                            <p className="text-red-700 text-sm">
+                              AES-256-GCM encryption active. All data encrypted at rest and in transit.
+                            </p>
+                          </div>
+                          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                            <p className="text-orange-800 text-sm mb-2">📋 Audit Log:</p>
+                            <p className="text-orange-700 text-sm">
+                              Session started: 14:32 | Security level: Enterprise | Compliance: SOC2, GDPR
+                            </p>
+                          </div>
+                          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                            <p className="text-yellow-800 text-sm mb-2">⚡ Session Security:</p>
+                            <p className="text-yellow-700 text-sm">
+                              Auto-timeout: 10 minutes | Failed attempts: 0/5 | MFA: Enabled
+                            </p>
+                          </div>
+                        </>
+                      )}
+                      
+                      {activeFeature === 'invisible-overlay' && (
+                        <>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-blue-700 to-teal-600 rounded-lg flex items-center justify-center">
+                              <Eye className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-slate-800 font-semibold">Invisible Overlay Active</p>
+                              <p className="text-slate-600 text-sm">Seamless integration with any application</p>
+                            </div>
+                          </div>
+                          <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
+                            <p className="text-teal-800 text-sm mb-2">👁️ Overlay Status:</p>
+                            <p className="text-teal-700 text-sm">
+                              Transparent interface active on Zoom. Providing contextual insights 
+                              without disrupting meeting flow.
+                            </p>
+                          </div>
+                          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
+                            <p className="text-slate-800 text-sm mb-2">🎯 Smart Positioning:</p>
+                            <p className="text-slate-700 text-sm">
+                              Interface automatically positioned to avoid screen sharing areas. 
+                              One-click response copying available.
+                            </p>
+                          </div>
+                        </>
+                      )}
+                      
+                      {activeFeature === 'multi-vision' && (
+                        <>
+                          <div className="flex items-center space-x-3">
+                            <div className="w-10 h-10 bg-gradient-to-r from-teal-600 to-slate-600 rounded-lg flex items-center justify-center">
+                              <Camera className="h-5 w-5 text-white" />
+                            </div>
+                            <div>
+                              <p className="text-slate-800 font-semibold">Multi-Vision Analysis</p>
+                              <p className="text-slate-600 text-sm">Advanced screen understanding active</p>
+                            </div>
+                          </div>
+                          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                            <p className="text-green-800 text-sm mb-2">📊 Google Vision API:</p>
+                            <p className="text-green-700 text-sm">
+                              PowerPoint slide detected: "Q4 Revenue Projections". 
+                              99% OCR accuracy on financial data.
+                            </p>
+                          </div>
+                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                            <p className="text-blue-800 text-sm mb-2">🎯 OpenAI Vision:</p>
+                            <p className="text-blue-700 text-sm">
+                              Chart analysis: Revenue trend shows 23% growth. 
+                              Recommend highlighting market expansion success.
+                            </p>
+                          </div>
+                        </>
+                      )}
+                      
                       {activeFeature === 'real-time-processing' && (
                         <>
                           <div className="flex items-center space-x-3">
@@ -597,21 +785,160 @@ function App() {
             </div>
           </div>
         </div>
+         {/* New Features Highlight Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-50 via-pink-50 to-blue-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white mb-4">
+              🚀 New Features
+            </Badge>
+            <h2 className="text-4xl font-bold text-slate-800 mb-4">
+              Revolutionary AI Capabilities Just Launched
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Experience the future of meeting intelligence with our latest breakthrough features
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Predictive Outcomes */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/90 backdrop-blur-md border-purple-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden">
+                <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4">
+                  <div className="flex items-center space-x-3">
+                    <TrendingUp className="h-8 w-8 text-white" />
+                    <h3 className="text-xl font-bold text-white">Predictive Meeting Outcomes</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <p className="text-slate-600 mb-4">
+                    AI-powered prediction engine that forecasts meeting outcomes, decision points, and strategic opportunities before they happen.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-slate-600">87% accuracy in outcome prediction</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-slate-600">Real-time decision timeline analysis</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-purple-600" />
+                      <span className="text-sm text-slate-600">Strategic recommendations</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
+                    <p className="text-purple-800 text-sm font-medium">Available in Pro tier and above</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Multi-Language Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/90 backdrop-blur-md border-green-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden">
+                <div className="bg-gradient-to-r from-green-600 to-blue-600 p-4">
+                  <div className="flex items-center space-x-3">
+                    <Globe className="h-8 w-8 text-white" />
+                    <h3 className="text-xl font-bold text-white">Multi-Language Support</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <p className="text-slate-600 mb-4">
+                    Comprehensive internationalization with real-time translation and support for 95+ languages worldwide.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span className="text-sm text-slate-600">95+ languages supported</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span className="text-sm text-slate-600">Real-time translation (&lt;200ms)</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <span className="text-sm text-slate-600">Cultural context adaptation</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                    <p className="text-green-800 text-sm font-medium">10 languages in Starter, 95+ in Enterprise</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Enhanced Security */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Card className="bg-white/90 backdrop-blur-md border-red-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden">
+                <div className="bg-gradient-to-r from-red-600 to-orange-600 p-4">
+                  <div className="flex items-center space-x-3">
+                    <Shield className="h-8 w-8 text-white" />
+                    <h3 className="text-xl font-bold text-white">Enhanced Security</h3>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <p className="text-slate-600 mb-4">
+                    Enterprise-grade security with military-level encryption, comprehensive audit logging, and granular access controls.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-red-600" />
+                      <span className="text-sm text-slate-600">AES-256-GCM encryption</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-red-600" />
+                      <span className="text-sm text-slate-600">Comprehensive audit logging</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <CheckCircle className="h-4 w-4 text-red-600" />
+                      <span className="text-sm text-slate-600">SOC2, GDPR, HIPAA compliance</span>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+                    <p className="text-red-800 text-sm font-medium">Standard security in all tiers, advanced in Elite+</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg px-8 py-4">
+              <Sparkles className="mr-2 h-5 w-5" />
+              Try New Features Free
+            </Button>
+          </div>
+        </div>
       </section>
 
-      {/* Advanced Features Grid */}
+      {/* Advanced Features Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Complete Professional AI Suite
+              Advanced Professional Capabilities
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Every feature designed for professional excellence and strategic advantage
+              Comprehensive suite of enterprise-grade features designed for the modern professional
             </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          </div>         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {advancedFeatures.map((feature, index) => (
               <motion.div
                 key={feature.title}
@@ -874,6 +1201,7 @@ function App() {
           </div>
         </div>
       </footer>
+      </section>
     </div>
   )
 }
