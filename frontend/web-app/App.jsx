@@ -6,107 +6,116 @@ import {
   Brain, Users, Mail, Search, Zap, Shield, Download, ChevronDown, Play, MessageSquare, 
   Clock, Star, Eye, Mic, Camera, Globe, Lock, Award, CheckCircle, ArrowRight,
   Layers, Target, TrendingUp, BarChart3, Lightbulb, Headphones, Monitor,
-  FileText, Settings, Crown, Building, Sparkles, Infinity, Calendar
+  FileText, Settings, Crown, Building, Sparkles, Infinity, Calendar,
+  Database, Network, Cpu, Activity, Gauge, Radar, Telescope, Rocket
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
 
 function App() {
-  const [activeFeature, setActiveFeature] = useState('collaborative-ai')
+  const [activeFeature, setActiveFeature] = useState('triple-ai-collaboration')
   const [activeTier, setActiveTier] = useState('pro')
   const [isListening, setIsListening] = useState(false)
   const [currentInsight, setCurrentInsight] = useState('')
   const [showDemo, setShowDemo] = useState(false)
 
-  const coreFeatures = [
+  const revolutionaryFeatures = [
     {
-      id: 'collaborative-ai',
+      id: 'triple-ai-collaboration',
       title: 'Triple-AI Collaboration',
       icon: Brain,
-      description: 'GPT-5, Claude Sonnet 4.5 & Gemini Flash 2.5 working together',
-      color: 'from-slate-600 to-blue-700',
-      details: 'Revolutionary AI collaboration where three specialized models provide complementary insights'
+      description: 'GPT-5, Claude Sonnet 4.5 & Gemini Flash 2.5 working in perfect harmony',
+      color: 'from-blue-600 to-purple-700',
+      details: 'Revolutionary AI orchestration where three specialized models provide complementary intelligence, creating unprecedented analytical depth and accuracy that no single AI can match.'
     },
     {
-      id: 'predictive-outcomes',
-      title: 'Predictive Meeting Outcomes',
-      icon: TrendingUp,
-      description: 'AI-powered prediction of meeting outcomes and decision points',
+      id: 'predictive-intelligence',
+      title: 'Predictive Meeting Intelligence',
+      icon: Telescope,
+      description: '87% accuracy in forecasting meeting outcomes and decision points',
       color: 'from-purple-600 to-pink-600',
-      details: 'Advanced algorithms analyze conversation patterns to forecast likely outcomes and strategic opportunities'
+      details: 'Advanced machine learning algorithms analyze conversation patterns, participant behavior, and historical data to predict likely outcomes, strategic opportunities, and potential roadblocks before they occur.'
     },
     {
-      id: 'multi-language',
-      title: 'Multi-Language Support',
+      id: 'cross-meeting-memory',
+      title: 'Cross-Meeting Memory System',
+      icon: Database,
+      description: 'Unlimited historical context with semantic relationship mapping',
+      color: 'from-green-600 to-teal-600',
+      details: 'Sophisticated memory architecture that maintains context across all meetings, automatically identifying relationships, tracking decisions, and surfacing relevant historical insights when needed.'
+    },
+    {
+      id: 'real-time-coaching',
+      title: 'AI Coaching & Optimization',
+      icon: Target,
+      description: 'Personalized performance coaching with real-time improvement suggestions',
+      color: 'from-orange-600 to-red-600',
+      details: 'Intelligent coaching system that analyzes your communication patterns, identifies improvement opportunities, and provides personalized recommendations to enhance meeting effectiveness.'
+    },
+    {
+      id: 'opportunity-detection',
+      title: 'Missed Opportunity Detection',
+      icon: Radar,
+      description: 'Real-time identification of collaboration gaps and strategic moments',
+      color: 'from-teal-600 to-blue-600',
+      details: 'Advanced detection algorithms identify missed clarification opportunities, engagement drops, decision points, and strategic moments, providing immediate alerts and post-meeting analysis.'
+    },
+    {
+      id: 'enterprise-knowledge',
+      title: 'Enterprise Knowledge Integration',
+      icon: Network,
+      description: 'Semantic search across organizational knowledge with proactive assistance',
+      color: 'from-indigo-600 to-purple-600',
+      details: 'Comprehensive knowledge base integration with semantic search, proactive information assistance, and intelligent content synthesis from multiple enterprise sources.'
+    },
+    {
+      id: 'multi-language-global',
+      title: 'Global Multi-Language Intelligence',
       icon: Globe,
-      description: 'Real-time translation and support for 95+ languages',
+      description: 'Real-time translation and cultural adaptation for 95+ languages',
       color: 'from-green-600 to-blue-600',
-      details: 'Comprehensive internationalization with real-time translation and localized AI processing'
+      details: 'Comprehensive internationalization with real-time translation, cultural context adaptation, and localized AI processing for global business communications.'
     },
     {
-      id: 'enhanced-security',
-      title: 'Enhanced Security',
+      id: 'enterprise-security',
+      title: 'Military-Grade Security',
       icon: Shield,
-      description: 'Enterprise-grade security with AES-256-GCM encryption',
+      description: 'Zero-trust architecture with AES-256-GCM encryption and compliance',
       color: 'from-red-600 to-orange-600',
-      details: 'Military-grade encryption, comprehensive audit logging, and granular security controls'
-    },
-    {
-      id: 'invisible-overlay',
-      title: 'Invisible Assistant',
-      icon: Eye,
-      description: 'Transparent overlay that works on top of any application',
-      color: 'from-blue-700 to-teal-600',
-      details: 'Seamless integration that enhances your workflow without disruption'
-    },
-    {
-      id: 'multi-vision',
-      title: 'Multi-Vision Analysis',
-      icon: Camera,
-      description: 'Google Vision + OpenAI Vision for comprehensive screen understanding',
-      color: 'from-teal-600 to-slate-600',
-      details: 'Advanced computer vision that understands presentations, documents, and visual content'
-    },
-    {
-      id: 'real-time-processing',
-      title: 'Real-Time Intelligence',
-      icon: Zap,
-      description: 'Instant insights and response suggestions during conversations',
-      color: 'from-slate-600 to-blue-700',
-      details: 'Lightning-fast analysis that keeps pace with dynamic business conversations'
+      details: 'Enterprise-grade security featuring zero-trust architecture, AES-256-GCM encryption, comprehensive audit logging, and compliance with SOC2, GDPR, HIPAA, and ISO 27001 standards.'
     }
   ]
 
-  const advancedFeatures = [
+  const advancedCapabilities = [
     {
-      title: 'Strategic Business Intelligence',
-      icon: Target,
-      description: 'Executive-level insights for high-stakes meetings and negotiations'
+      title: 'Unified Intelligence Hub',
+      icon: Cpu,
+      description: 'Master AI orchestrator coordinating all intelligence services with sub-200ms response times'
     },
     {
-      title: 'Audio Processing & Transcription',
-      icon: Headphones,
-      description: 'Professional-grade audio capture with real-time speech-to-text'
+      title: 'Performance Optimization Engine',
+      icon: Gauge,
+      description: 'Real-time system optimization with predictive scaling and intelligent resource management'
     },
     {
-      title: 'Screen Capture & OCR',
-      icon: Monitor,
-      description: 'Intelligent screen analysis with 99% text extraction accuracy'
+      title: 'Multi-Tenant Enterprise Architecture',
+      icon: Building,
+      description: 'Complete data isolation for enterprises with horizontal scaling to 10,000+ concurrent users'
     },
     {
-      title: 'Platform Integrations',
-      icon: Globe,
-      description: 'Native support for Zoom, Teams, Webex, and other platforms'
+      title: 'Real-Time Monitoring Dashboard',
+      icon: Activity,
+      description: 'Comprehensive observability with WebSocket-based updates and anomaly detection'
     },
     {
-      title: 'Knowledge Management',
-      icon: FileText,
-      description: 'Comprehensive meeting history and intelligent knowledge search'
+      title: 'Advanced Analytics & ROI Tracking',
+      icon: BarChart3,
+      description: 'Detailed meeting effectiveness scoring with measurable productivity improvements'
     },
     {
-      title: 'Privacy & Security',
-      icon: Shield,
-      description: 'Enterprise-grade security with local processing options'
+      title: 'Invisible Overlay Technology',
+      icon: Eye,
+      description: 'Transparent integration that works across any application without disruption'
     }
   ]
 
@@ -116,16 +125,15 @@ function App() {
       name: 'Starter',
       price: '$29',
       period: '/month',
-      description: 'Perfect for individuals getting started with AI assistance',
+      description: 'Essential AI assistance for individuals',
       features: [
         'Single AI model (Gemini Flash 2.5)',
-        'Basic meeting insights',
+        'Basic meeting insights and summaries',
         'Basic predictive outcomes',
         '10 supported languages',
-        'Standard security level',
-        'Standard audio processing',
-        'Email follow-ups',
-        '10 hours/month usage',
+        'Standard security encryption',
+        'Email follow-ups and action items',
+        '50 hours/month usage limit',
         'Community support'
       ],
       color: 'from-slate-500 to-slate-600',
@@ -138,19 +146,20 @@ function App() {
       period: '/month',
       description: 'Advanced AI collaboration for professionals',
       features: [
-        'Triple-AI collaboration (GPT-5, Claude, Gemini)',
-        'Advanced predictive outcomes with strategic suggestions',
+        'Triple-AI collaboration (GPT-5, Claude Sonnet 4.5, Gemini Flash 2.5)',
+        'Advanced predictive intelligence with 87% accuracy',
+        'Cross-meeting memory with historical context',
+        'Real-time opportunity detection',
         '30 supported languages with real-time translation',
-        'High security level with session controls',
+        'AI coaching with personalized recommendations',
+        'Advanced security with session controls',
         'Invisible overlay interface',
-        'Multi-vision analysis',
-        'Real-time processing',
-        'Advanced screen capture & OCR',
-        'Platform integrations',
+        'Multi-vision analysis capabilities',
+        'Platform integrations (Zoom, Teams, etc.)',
         'Unlimited usage',
         'Priority support'
       ],
-      color: 'from-blue-600 to-teal-600',
+      color: 'from-blue-600 to-purple-600',
       popular: true
     },
     {
@@ -161,18 +170,19 @@ function App() {
       description: 'Executive-level intelligence for strategic professionals',
       features: [
         'Everything in Pro',
-        'Historical pattern analysis for predictions',
-        '60 languages with offline packs & custom terminology',
-        'Enterprise security with advanced audit logging',
-        'Strategic business intelligence',
-        'Advanced prompting & fine-tuning',
-        'Custom AI model training',
-        'Executive dashboard',
-        'Advanced analytics',
-        'White-label options',
+        'Advanced predictive modeling with custom training',
+        'Enterprise knowledge base integration',
+        '60 languages with offline packs and custom terminology',
+        'Enhanced security with comprehensive audit logging',
+        'Strategic business intelligence dashboard',
+        'Advanced coaching with team performance analytics',
+        'Custom AI model fine-tuning',
+        'Executive reporting and ROI analytics',
+        'White-label customization options',
+        'Advanced API access',
         'Dedicated account manager'
       ],
-      color: 'from-teal-600 to-slate-700',
+      color: 'from-purple-600 to-pink-600',
       popular: false
     },
     {
@@ -183,52 +193,99 @@ function App() {
       description: 'Complete AI transformation for organizations',
       features: [
         'Everything in Elite',
-        'Custom prediction models with full training',
+        'Multi-tenant architecture with complete data isolation',
+        'Custom prediction models with organizational training',
         '95+ languages with custom language models',
-        'Custom security policies & compliance reporting',
-        'On-premise deployment',
-        'Custom integrations',
-        'Team management',
-        'Advanced security controls',
-        'Compliance certifications (SOC2, GDPR, HIPAA)',
-        'Training & onboarding',
-        '24/7 enterprise support'
+        'Military-grade security with zero-trust architecture',
+        'SOC2, GDPR, HIPAA, ISO 27001 compliance',
+        'On-premise deployment options',
+        'Custom integrations and API development',
+        'Advanced team management and analytics',
+        'Performance optimization engine',
+        'Real-time monitoring dashboard',
+        'Comprehensive training and onboarding',
+        '24/7 enterprise support with SLA guarantees'
       ],
       color: 'from-slate-700 to-slate-800',
       popular: false
     }
   ]
 
-  const useCases = [
+  const enterpriseUseCases = [
     {
-      title: 'Executive Meetings',
-      description: 'Strategic insights for C-suite discussions and board meetings',
-      icon: Crown
+      title: 'C-Suite Strategic Meetings',
+      description: 'Executive-level intelligence for board meetings and strategic planning sessions',
+      icon: Crown,
+      metrics: '40% improvement in decision quality'
     },
     {
-      title: 'Sales Presentations',
-      description: 'Real-time competitive intelligence and objection handling',
-      icon: TrendingUp
+      title: 'Sales & Revenue Operations',
+      description: 'Real-time competitive intelligence and predictive deal analysis',
+      icon: TrendingUp,
+      metrics: '35% increase in close rates'
     },
     {
-      title: 'Client Consultations',
+      title: 'Client Consulting & Advisory',
       description: 'Professional expertise and industry knowledge at your fingertips',
-      icon: Users
+      icon: Users,
+      metrics: '50% reduction in prep time'
     },
     {
-      title: 'Technical Discussions',
+      title: 'Technical Architecture Reviews',
       description: 'Instant access to technical documentation and best practices',
-      icon: Settings
+      icon: Settings,
+      metrics: '60% faster problem resolution'
     },
     {
-      title: 'Investor Pitches',
+      title: 'Investor Relations & Fundraising',
       description: 'Market data, financial insights, and persuasive messaging',
-      icon: BarChart3
+      icon: BarChart3,
+      metrics: '25% improvement in funding success'
     },
     {
-      title: 'Team Collaboration',
-      description: 'Enhanced productivity and decision-making for remote teams',
-      icon: Building
+      title: 'Global Team Collaboration',
+      description: 'Enhanced productivity with multi-language support and cultural adaptation',
+      icon: Building,
+      metrics: '45% increase in team effectiveness'
+    }
+  ]
+
+  const competitiveAdvantages = [
+    {
+      title: 'Only Triple-AI Platform',
+      description: 'Unique collaboration of GPT-5, Claude Sonnet 4.5, and Gemini Flash 2.5',
+      icon: Brain,
+      advantage: 'vs. Single AI competitors'
+    },
+    {
+      title: 'Predictive Intelligence',
+      description: '87% accuracy in meeting outcome forecasting',
+      icon: Telescope,
+      advantage: 'vs. Reactive-only solutions'
+    },
+    {
+      title: 'Cross-Meeting Memory',
+      description: 'Unlimited historical context with semantic understanding',
+      icon: Database,
+      advantage: 'vs. Session-limited platforms'
+    },
+    {
+      title: 'Enterprise Multi-Tenancy',
+      description: 'Complete data isolation with shared infrastructure efficiency',
+      icon: Building,
+      advantage: 'vs. Single-tenant limitations'
+    },
+    {
+      title: 'Real-Time Optimization',
+      description: 'Sub-200ms response times with intelligent performance tuning',
+      icon: Gauge,
+      advantage: 'vs. Static performance systems'
+    },
+    {
+      title: 'Military-Grade Security',
+      description: 'Zero-trust architecture with comprehensive compliance',
+      icon: Shield,
+      advantage: 'vs. Basic security implementations'
     }
   ]
 
@@ -236,36 +293,51 @@ function App() {
     {
       name: 'Sarah Chen',
       role: 'Chief Revenue Officer',
-      company: 'TechCorp',
-      content: 'MeetingMind transformed our sales process. The triple-AI collaboration provides insights that would take a team of analysts to generate.',
+      company: 'TechCorp Global',
+      content: 'MeetingMind\'s triple-AI collaboration transformed our sales process. The predictive intelligence helped us close 35% more deals by anticipating client needs and objections.',
       rating: 5,
-      tier: 'Elite'
+      tier: 'Elite',
+      metrics: '35% increase in close rates'
     },
     {
       name: 'Marcus Johnson',
       role: 'Management Consultant',
       company: 'Strategy Partners',
-      content: 'The invisible overlay is revolutionary. I can access strategic intelligence without disrupting client conversations.',
+      content: 'The cross-meeting memory is revolutionary. It remembers every client interaction and surfaces relevant insights instantly. Our consulting effectiveness improved by 50%.',
       rating: 5,
-      tier: 'Pro'
+      tier: 'Pro',
+      metrics: '50% improvement in consulting effectiveness'
     },
     {
       name: 'Dr. Emily Rodriguez',
-      role: 'Research Director',
+      role: 'Chief Technology Officer',
       company: 'Innovation Labs',
-      content: 'The multi-vision analysis capabilities have elevated our presentation quality and stakeholder engagement significantly.',
+      content: 'The enterprise security and multi-tenant architecture gave us confidence to deploy across our entire organization. The ROI was evident within the first quarter.',
       rating: 5,
-      tier: 'Elite'
+      tier: 'Enterprise',
+      metrics: 'Positive ROI in Q1'
+    },
+    {
+      name: 'David Kim',
+      role: 'VP of Business Development',
+      company: 'Global Ventures',
+      content: 'The multi-language support and cultural adaptation features enabled us to expand into 12 new international markets with unprecedented success.',
+      rating: 5,
+      tier: 'Elite',
+      metrics: '12 new markets launched'
     }
   ]
 
   useEffect(() => {
     const insights = [
-      "Strategic opportunity detected: Client mentioned budget expansion",
-      "Competitive advantage identified: Emphasize our unique AI collaboration",
-      "Decision maker engagement: High interest in technical capabilities",
-      "Market trend alignment: Perfect timing for digital transformation discussion",
-      "Relationship building moment: Personal connection opportunity identified"
+      "🎯 Strategic opportunity detected: Client mentioned budget expansion for Q4",
+      "🧠 AI Synthesis: GPT-5 suggests technical approach, Claude validates risks, Gemini optimizes timing",
+      "📊 Predictive Analysis: 92% probability of positive decision based on engagement patterns",
+      "🔍 Cross-Meeting Context: Similar discussion from March meeting resulted in $2M contract",
+      "💡 Coaching Insight: Increase technical detail by 15% to match client's expertise level",
+      "🌐 Cultural Adaptation: Adjust communication style for Japanese business etiquette",
+      "⚡ Real-Time Alert: Decision maker showing high interest - perfect moment for proposal",
+      "📈 ROI Projection: Implementation of suggested approach could yield 40% efficiency gain"
     ]
     
     const interval = setInterval(() => {
@@ -280,31 +352,32 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-3">
-              <div className="p-2 bg-gradient-to-r from-slate-600 to-blue-700 rounded-lg">
+              <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg">
                 <Brain className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-slate-700 to-blue-800 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-purple-800 bg-clip-text text-transparent">
                 MeetingMind
               </span>
-              <Badge className="bg-gradient-to-r from-teal-500 to-blue-600 text-white">
-                Professional AI Assistant
+              <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white">
+                Revolutionary AI Platform
               </Badge>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#features" className="text-slate-600 hover:text-slate-800 font-medium transition-colors">Features</a>
+              <a href="#features" className="text-slate-600 hover:text-slate-800 font-medium transition-colors">Platform</a>
+              <a href="#advantages" className="text-slate-600 hover:text-slate-800 font-medium transition-colors">Advantages</a>
               <a href="#pricing" className="text-slate-600 hover:text-slate-800 font-medium transition-colors">Pricing</a>
               <a href="#enterprise" className="text-slate-600 hover:text-slate-800 font-medium transition-colors">Enterprise</a>
               <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-100">
                 Learn More
               </Button>
             </div>
-            <Button className="bg-gradient-to-r from-slate-600 to-blue-700 hover:from-slate-700 hover:to-blue-800 text-white">
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white">
               Start Free Trial
             </Button>
           </div>
@@ -320,112 +393,159 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
+              <div className="flex justify-center mb-6">
+                <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white text-lg px-6 py-2">
+                  🚀 Most Advanced Meeting Intelligence Platform
+                </Badge>
+              </div>
+              
               <h1 className="text-5xl md:text-7xl font-bold text-slate-800 mb-6">
-                Your AI Strategic
+                Revolutionary
                 <br />
-                <span className="bg-gradient-to-r from-blue-600 to-teal-600 bg-clip-text text-transparent">
-                  Business Partner
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Triple-AI Intelligence
                 </span>
               </h1>
+              
               <p className="text-xl text-slate-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-                MeetingMind combines GPT-5, Claude Sonnet 4.5, and Gemini Flash 2.5 in a revolutionary 
-                collaborative AI system that provides executive-level intelligence for every business conversation.
+                The world's first platform combining <strong>GPT-5, Claude Sonnet 4.5, and Gemini Flash 2.5</strong> 
+                in revolutionary collaboration. Featuring predictive meeting intelligence, cross-meeting memory, 
+                and enterprise-grade security that transforms every business conversation.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-                <Button size="lg" className="bg-gradient-to-r from-slate-600 to-blue-700 hover:from-slate-700 hover:to-blue-800 text-white text-lg px-8 py-4">
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Start Free Trial
+                <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800 text-white text-lg px-8 py-4">
+                  <Rocket className="mr-2 h-5 w-5" />
+                  Experience the Revolution
                 </Button>
                 <Button size="lg" variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-100 text-lg px-8 py-4">
                   <Play className="mr-2 h-5 w-5" />
-                  Watch Demo
+                  Watch Platform Demo
                 </Button>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center mb-12">
+                <div className="p-4">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">87%</div>
+                  <div className="text-sm text-slate-600">Prediction Accuracy</div>
+                </div>
+                <div className="p-4">
+                  <div className="text-3xl font-bold text-purple-600 mb-1">3</div>
+                  <div className="text-sm text-slate-600">AI Models Collaborating</div>
+                </div>
+                <div className="p-4">
+                  <div className="text-3xl font-bold text-pink-600 mb-1">95+</div>
+                  <div className="text-sm text-slate-600">Languages Supported</div>
+                </div>
+                <div className="p-4">
+                  <div className="text-3xl font-bold text-teal-600 mb-1">200ms</div>
+                  <div className="text-sm text-slate-600">Response Time</div>
+                </div>
               </div>
 
               <div className="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-teal-600" />
-                  <span>Enterprise Security</span>
+                  <span>Military-Grade Security</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-teal-600" />
-                  <span>Triple-AI Collaboration</span>
+                  <span>Enterprise Multi-Tenancy</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-teal-600" />
-                  <span>Real-Time Intelligence</span>
+                  <span>Predictive Intelligence</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="h-4 w-4 text-teal-600" />
-                  <span>Invisible Integration</span>
+                  <span>Cross-Meeting Memory</span>
                 </div>
               </div>
             </motion.div>
           </div>
 
-          {/* AI Collaboration Demo */}
+          {/* Revolutionary AI Demo */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <Card className="bg-white/70 backdrop-blur-md border-slate-200/50 shadow-xl">
-              <CardHeader className="bg-gradient-to-r from-slate-600 to-blue-700 text-white">
+            <Card className="bg-white/70 backdrop-blur-md border-slate-200/50 shadow-2xl">
+              <CardHeader className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <Infinity className="h-6 w-6" />
-                    <CardTitle>Triple-AI Collaborative Intelligence</CardTitle>
+                    <CardTitle>Revolutionary Triple-AI Collaborative Intelligence</CardTitle>
                   </div>
                   <div className="flex items-center space-x-2">
                     <div className={`w-3 h-3 rounded-full ${isListening ? 'bg-green-400 animate-pulse' : 'bg-slate-400'}`}></div>
                     <span className="text-sm">
-                      {isListening ? 'Active Analysis' : 'Ready'}
+                      {isListening ? 'Active Intelligence' : 'Ready for Analysis'}
                     </span>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="p-6">
-                <div className="grid md:grid-cols-3 gap-6 mb-6">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Brain className="h-8 w-8 text-white" />
+                    <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Brain className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="font-semibold text-slate-800 mb-1">GPT-5</h3>
-                    <p className="text-sm text-slate-600">Strategic Intelligence</p>
+                    <h3 className="font-bold text-slate-800 mb-2">GPT-5</h3>
+                    <p className="text-sm text-slate-600 mb-2">Strategic Intelligence & Reasoning</p>
+                    <Badge className="bg-green-100 text-green-800 text-xs">Language Generation</Badge>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Lightbulb className="h-8 w-8 text-white" />
+                    <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Lightbulb className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="font-semibold text-slate-800 mb-1">Claude Sonnet 4.5</h3>
-                    <p className="text-sm text-slate-600">Analytical Reasoning</p>
+                    <h3 className="font-bold text-slate-800 mb-2">Claude Sonnet 4.5</h3>
+                    <p className="text-sm text-slate-600 mb-2">Analytical Reasoning & Safety</p>
+                    <Badge className="bg-purple-100 text-purple-800 text-xs">Risk Assessment</Badge>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <Zap className="h-8 w-8 text-white" />
+                    <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Zap className="h-10 w-10 text-white" />
                     </div>
-                    <h3 className="font-semibold text-slate-800 mb-1">Gemini Flash 2.5</h3>
-                    <p className="text-sm text-slate-600">Real-Time Processing</p>
+                    <h3 className="font-bold text-slate-800 mb-2">Gemini Flash 2.5</h3>
+                    <p className="text-sm text-slate-600 mb-2">Speed & Multimodal Processing</p>
+                    <Badge className="bg-orange-100 text-orange-800 text-xs">Real-Time Response</Badge>
                   </div>
                 </div>
-                
-                <div className="bg-gradient-to-r from-slate-50 to-blue-50 rounded-lg p-4 border border-slate-200">
-                  <div className="flex items-start space-x-3">
-                    <MessageSquare className="h-5 w-5 text-blue-600 mt-1" />
-                    <div className="flex-1">
-                      <p className="text-slate-700 font-medium mb-2">Collaborative Insight:</p>
-                      <p className="text-slate-600 text-sm leading-relaxed">
-                        {currentInsight}
-                      </p>
-                      <div className="flex items-center space-x-4 mt-3 text-xs text-slate-500">
-                        <span>Confidence: 94%</span>
-                        <span>Processing: 1.2s</span>
-                        <span>Sources: 3 AI models</span>
-                      </div>
-                    </div>
+
+                <div className="bg-slate-50 rounded-lg p-6 mb-6">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Activity className="h-5 w-5 text-blue-600" />
+                    <span className="font-semibold text-slate-800">Live Intelligence Stream</span>
                   </div>
+                  <div className="bg-white rounded-md p-4 border-l-4 border-blue-500">
+                    <p className="text-slate-700 font-medium">
+                      {currentInsight}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <Button 
+                    onClick={toggleListening}
+                    className={`${isListening 
+                      ? 'bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700' 
+                      : 'bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800'
+                    } text-white px-8 py-3`}
+                  >
+                    {isListening ? (
+                      <>
+                        <Mic className="mr-2 h-5 w-5 animate-pulse" />
+                        Stop Analysis
+                      </>
+                    ) : (
+                      <>
+                        <Mic className="mr-2 h-5 w-5" />
+                        Start AI Analysis
+                      </>
+                    )}
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -433,529 +553,143 @@ function App() {
         </div>
       </section>
 
-      {/* Core Features Section */}
+      {/* Revolutionary Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Revolutionary AI Collaboration Platform
+            <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white mb-4">
+              Revolutionary Platform Features
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+              Unprecedented AI Capabilities
             </h2>
-            <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
-              Experience the power of three specialized AI models working together to provide 
-              unprecedented business intelligence and strategic insights.
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Experience the future of meeting intelligence with revolutionary features 
+              that no other platform can match.
             </p>
-            
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {coreFeatures.map((feature) => (
-                <Button
-                  key={feature.id}
-                  variant={activeFeature === feature.id ? "default" : "outline"}
-                  onClick={() => setActiveFeature(feature.id)}
-                  className={`${
-                    activeFeature === feature.id
-                      ? `bg-gradient-to-r ${feature.color} text-white shadow-lg`
-                      : 'border-slate-300 text-slate-700 hover:bg-slate-100'
-                  } transition-all duration-300`}
-                >
-                  <feature.icon className="mr-2 h-4 w-4" />
-                  {feature.title}
-                </Button>
-              ))}
-            </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              key={activeFeature}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Card className="bg-white/80 backdrop-blur-md border-slate-200/50 shadow-xl overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="bg-gradient-to-r from-slate-700 to-slate-800 p-4 flex items-center space-x-3">
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
-                    <span className="text-white text-sm font-medium">MeetingMind Professional</span>
-                  </div>
-                  <div className="p-6">
-                    <div className="space-y-4">
-                      {activeFeature === 'collaborative-ai' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-blue-700 rounded-lg flex items-center justify-center">
-                              <Brain className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Triple-AI Analysis Active</p>
-                              <p className="text-slate-600 text-sm">All models collaborating in real-time</p>
-                            </div>
-                          </div>
-                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                            <p className="text-blue-800 text-sm mb-2">🧠 Strategic Intelligence (GPT-5):</p>
-                            <p className="text-blue-700 text-sm">
-                              This discussion represents a critical inflection point for market positioning. 
-                              Recommend emphasizing competitive differentiation.
-                            </p>
-                          </div>
-                          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                            <p className="text-purple-800 text-sm mb-2">💡 Analytical Insight (Claude):</p>
-                            <p className="text-purple-700 text-sm">
-                              Client's language patterns suggest high purchase intent. 
-                              Optimal timing for value proposition presentation.
-                            </p>
-                          </div>
-                          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-                            <p className="text-orange-800 text-sm mb-2">⚡ Real-Time Context (Gemini):</p>
-                            <p className="text-orange-700 text-sm">
-                              Engagement metrics positive. Recommend transitioning to pricing discussion.
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'invisible-overlay' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-blue-700 to-teal-600 rounded-lg flex items-center justify-center">
-                              <Eye className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Invisible Overlay Active</p>
-                              <p className="text-slate-600 text-sm">Seamless integration with any application</p>
-                            </div>
-                          </div>
-                          <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
-                            <p className="text-teal-800 text-sm mb-2">👁️ Overlay Status:</p>
-                            <p className="text-teal-700 text-sm">
-                              Transparent interface active on Zoom. Providing contextual insights 
-                              without disrupting meeting flow.
-                            </p>
-                          </div>
-                          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
-                            <p className="text-slate-800 text-sm mb-2">🎯 Smart Positioning:</p>
-                            <p className="text-slate-700 text-sm">
-                              Interface automatically positioned to avoid screen sharing areas. 
-                              One-click response copying available.
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'multi-vision' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-teal-600 to-slate-600 rounded-lg flex items-center justify-center">
-                              <Camera className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Multi-Vision Analysis</p>
-                              <p className="text-slate-600 text-sm">Advanced screen understanding active</p>
-                            </div>
-                          </div>
-                          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                            <p className="text-green-800 text-sm mb-2">📊 Google Vision API:</p>
-                            <p className="text-green-700 text-sm">
-                              PowerPoint slide detected: "Q4 Revenue Projections". 
-                              99% OCR accuracy on financial data.
-                            </p>
-                          </div>
-                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                            <p className="text-blue-800 text-sm mb-2">🎯 OpenAI Vision:</p>
-                            <p className="text-blue-700 text-sm">
-                              Chart analysis: Revenue trend shows 23% growth. 
-                              Recommend highlighting market expansion success.
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'predictive-outcomes' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-                              <TrendingUp className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Predictive Outcomes Active</p>
-                              <p className="text-slate-600 text-sm">AI forecasting meeting direction and outcomes</p>
-                            </div>
-                          </div>
-                          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
-                            <p className="text-purple-800 text-sm mb-2">🔮 Outcome Prediction (87% confidence):</p>
-                            <p className="text-purple-700 text-sm">
-                              Meeting likely to conclude with budget approval. Decision point expected in 8 minutes.
-                            </p>
-                          </div>
-                          <div className="bg-pink-50 rounded-lg p-4 border border-pink-200">
-                            <p className="text-pink-800 text-sm mb-2">📊 Strategic Recommendation:</p>
-                            <p className="text-pink-700 text-sm">
-                              Prepare implementation timeline discussion. Client showing high engagement with technical details.
-                            </p>
-                          </div>
-                          <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
-                            <p className="text-indigo-800 text-sm mb-2">⏰ Decision Timeline:</p>
-                            <p className="text-indigo-700 text-sm">
-                              Next 3 minutes: Technical questions | 5-8 min: Budget discussion | 8+ min: Final decision
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'multi-language' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-green-600 to-blue-600 rounded-lg flex items-center justify-center">
-                              <Globe className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Multi-Language Support</p>
-                              <p className="text-slate-600 text-sm">Real-time translation across 95+ languages</p>
-                            </div>
-                          </div>
-                          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                            <p className="text-green-800 text-sm mb-2">🌍 Language Detection:</p>
-                            <p className="text-green-700 text-sm">
-                              Primary: English | Secondary: Spanish detected | Auto-translation: Active
-                            </p>
-                          </div>
-                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                            <p className="text-blue-800 text-sm mb-2">🔄 Real-time Translation:</p>
-                            <p className="text-blue-700 text-sm">
-                              "Excelente propuesta" → "Excellent proposal" | Confidence: 98% | Latency: 120ms
-                            </p>
-                          </div>
-                          <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
-                            <p className="text-teal-800 text-sm mb-2">🎯 Cultural Context:</p>
-                            <p className="text-teal-700 text-sm">
-                              Business context adapted for Latin American market. Formal tone maintained.
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'enhanced-security' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-orange-600 rounded-lg flex items-center justify-center">
-                              <Shield className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Enhanced Security Active</p>
-                              <p className="text-slate-600 text-sm">Enterprise-grade protection enabled</p>
-                            </div>
-                          </div>
-                          <div className="bg-red-50 rounded-lg p-4 border border-red-200">
-                            <p className="text-red-800 text-sm mb-2">🔒 Encryption Status:</p>
-                            <p className="text-red-700 text-sm">
-                              AES-256-GCM encryption active. All data encrypted at rest and in transit.
-                            </p>
-                          </div>
-                          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
-                            <p className="text-orange-800 text-sm mb-2">📋 Audit Log:</p>
-                            <p className="text-orange-700 text-sm">
-                              Session started: 14:32 | Security level: Enterprise | Compliance: SOC2, GDPR
-                            </p>
-                          </div>
-                          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
-                            <p className="text-yellow-800 text-sm mb-2">⚡ Session Security:</p>
-                            <p className="text-yellow-700 text-sm">
-                              Auto-timeout: 10 minutes | Failed attempts: 0/5 | MFA: Enabled
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'invisible-overlay' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-blue-700 to-teal-600 rounded-lg flex items-center justify-center">
-                              <Eye className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Invisible Overlay Active</p>
-                              <p className="text-slate-600 text-sm">Seamless integration with any application</p>
-                            </div>
-                          </div>
-                          <div className="bg-teal-50 rounded-lg p-4 border border-teal-200">
-                            <p className="text-teal-800 text-sm mb-2">👁️ Overlay Status:</p>
-                            <p className="text-teal-700 text-sm">
-                              Transparent interface active on Zoom. Providing contextual insights 
-                              without disrupting meeting flow.
-                            </p>
-                          </div>
-                          <div className="bg-slate-50 rounded-lg p-4 border border-slate-200">
-                            <p className="text-slate-800 text-sm mb-2">🎯 Smart Positioning:</p>
-                            <p className="text-slate-700 text-sm">
-                              Interface automatically positioned to avoid screen sharing areas. 
-                              One-click response copying available.
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'multi-vision' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-teal-600 to-slate-600 rounded-lg flex items-center justify-center">
-                              <Camera className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Multi-Vision Analysis</p>
-                              <p className="text-slate-600 text-sm">Advanced screen understanding active</p>
-                            </div>
-                          </div>
-                          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
-                            <p className="text-green-800 text-sm mb-2">📊 Google Vision API:</p>
-                            <p className="text-green-700 text-sm">
-                              PowerPoint slide detected: "Q4 Revenue Projections". 
-                              99% OCR accuracy on financial data.
-                            </p>
-                          </div>
-                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
-                            <p className="text-blue-800 text-sm mb-2">🎯 OpenAI Vision:</p>
-                            <p className="text-blue-700 text-sm">
-                              Chart analysis: Revenue trend shows 23% growth. 
-                              Recommend highlighting market expansion success.
-                            </p>
-                          </div>
-                        </>
-                      )}
-                      
-                      {activeFeature === 'real-time-processing' && (
-                        <>
-                          <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-r from-slate-600 to-blue-700 rounded-lg flex items-center justify-center">
-                              <Zap className="h-5 w-5 text-white" />
-                            </div>
-                            <div>
-                              <p className="text-slate-800 font-semibold">Real-Time Intelligence</p>
-                              <p className="text-slate-600 text-sm">Instant processing and response generation</p>
-                            </div>
-                          </div>
-                          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
-                            <p className="text-yellow-800 text-sm mb-2">⚡ Processing Speed:</p>
-                            <p className="text-yellow-700 text-sm">
-                              Analysis completed in 0.8 seconds. Response suggestions ready.
-                            </p>
-                          </div>
-                          <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
-                            <p className="text-indigo-800 text-sm mb-2">🎯 Suggested Response:</p>
-                            <p className="text-indigo-700 text-sm">
-                              "That's an excellent point about scalability. Our architecture 
-                              is designed to handle 10x growth seamlessly."
-                            </p>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <div className="space-y-6">
-              {coreFeatures.map((feature) => (
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+            <div className="space-y-4">
+              {revolutionaryFeatures.map((feature) => (
                 <motion.div
                   key={feature.id}
-                  initial={{ opacity: 0.7 }}
-                  animate={{ opacity: activeFeature === feature.id ? 1 : 0.7 }}
-                  className={`p-6 rounded-xl border transition-all duration-300 cursor-pointer ${
+                  className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${
                     activeFeature === feature.id
-                      ? 'bg-white border-slate-300 shadow-lg'
-                      : 'bg-white/50 border-slate-200 hover:bg-white/80'
+                      ? 'bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200'
+                      : 'bg-white hover:bg-slate-50 border border-slate-200'
                   }`}
                   onClick={() => setActiveFeature(feature.id)}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <div className="flex items-start space-x-4">
-                    <div className={`p-3 rounded-lg bg-gradient-to-r ${feature.color} flex-shrink-0`}>
+                  <div className="flex items-center space-x-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-r ${feature.color}`}>
                       <feature.icon className="h-6 w-6 text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-slate-800 mb-2">{feature.title}</h3>
-                      <p className="text-slate-600 mb-3">{feature.description}</p>
-                      <p className="text-sm text-slate-500">{feature.details}</p>
+                      <h3 className="font-bold text-slate-800 mb-1">{feature.title}</h3>
+                      <p className="text-sm text-slate-600">{feature.description}</p>
                     </div>
+                    <ArrowRight className={`h-5 w-5 transition-colors ${
+                      activeFeature === feature.id ? 'text-blue-600' : 'text-slate-400'
+                    }`} />
                   </div>
                 </motion.div>
               ))}
             </div>
-          </div>
-        </div>
-         {/* New Features Highlight Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-50 via-pink-50 to-blue-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white mb-4">
-              🚀 New Features
-            </Badge>
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Revolutionary AI Capabilities Just Launched
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Experience the future of meeting intelligence with our latest breakthrough features
-            </p>
-          </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Predictive Outcomes */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-white/90 backdrop-blur-md border-purple-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden">
-                <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4">
-                  <div className="flex items-center space-x-3">
-                    <TrendingUp className="h-8 w-8 text-white" />
-                    <h3 className="text-xl font-bold text-white">Predictive Meeting Outcomes</h3>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-slate-600 mb-4">
-                    AI-powered prediction engine that forecasts meeting outcomes, decision points, and strategic opportunities before they happen.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span className="text-sm text-slate-600">87% accuracy in outcome prediction</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span className="text-sm text-slate-600">Real-time decision timeline analysis</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-purple-600" />
-                      <span className="text-sm text-slate-600">Strategic recommendations</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                    <p className="text-purple-800 text-sm font-medium">Available in Pro tier and above</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+            <div className="lg:pl-8">
+              <AnimatePresence mode="wait">
+                {revolutionaryFeatures.map((feature) => (
+                  activeFeature === feature.id && (
+                    <motion.div
+                      key={feature.id}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Card className="bg-white shadow-xl border-0">
+                        <CardHeader className={`bg-gradient-to-r ${feature.color} text-white`}>
+                          <div className="flex items-center space-x-3">
+                            <feature.icon className="h-8 w-8" />
+                            <CardTitle className="text-xl">{feature.title}</CardTitle>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="p-6">
+                          <p className="text-slate-700 leading-relaxed mb-6">
+                            {feature.details}
+                          </p>
+                          
+                          {feature.id === 'triple-ai-collaboration' && (
+                            <div className="space-y-4">
+                              <div className="flex items-center space-x-3 p-3 bg-green-50 rounded-lg">
+                                <CheckCircle className="h-5 w-5 text-green-600" />
+                                <span className="text-sm text-green-800">GPT-5: Strategic reasoning and content generation</span>
+                              </div>
+                              <div className="flex items-center space-x-3 p-3 bg-purple-50 rounded-lg">
+                                <CheckCircle className="h-5 w-5 text-purple-600" />
+                                <span className="text-sm text-purple-800">Claude: Analytical accuracy and risk assessment</span>
+                              </div>
+                              <div className="flex items-center space-x-3 p-3 bg-orange-50 rounded-lg">
+                                <CheckCircle className="h-5 w-5 text-orange-600" />
+                                <span className="text-sm text-orange-800">Gemini: Speed optimization and multimodal processing</span>
+                              </div>
+                            </div>
+                          )}
 
-            {/* Multi-Language Support */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-white/90 backdrop-blur-md border-green-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden">
-                <div className="bg-gradient-to-r from-green-600 to-blue-600 p-4">
-                  <div className="flex items-center space-x-3">
-                    <Globe className="h-8 w-8 text-white" />
-                    <h3 className="text-xl font-bold text-white">Multi-Language Support</h3>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-slate-600 mb-4">
-                    Comprehensive internationalization with real-time translation and support for 95+ languages worldwide.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span className="text-sm text-slate-600">95+ languages supported</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span className="text-sm text-slate-600">Real-time translation (&lt;200ms)</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
-                      <span className="text-sm text-slate-600">Cultural context adaptation</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                    <p className="text-green-800 text-sm font-medium">10 languages in Starter, 95+ in Enterprise</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                          {feature.id === 'predictive-intelligence' && (
+                            <div className="space-y-4">
+                              <div className="grid grid-cols-2 gap-4">
+                                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                                  <div className="text-2xl font-bold text-blue-600 mb-1">87%</div>
+                                  <div className="text-xs text-blue-800">Prediction Accuracy</div>
+                                </div>
+                                <div className="text-center p-4 bg-purple-50 rounded-lg">
+                                  <div className="text-2xl font-bold text-purple-600 mb-1">2s</div>
+                                  <div className="text-xs text-purple-800">Analysis Speed</div>
+                                </div>
+                              </div>
+                            </div>
+                          )}
 
-            {/* Enhanced Security */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-white/90 backdrop-blur-md border-red-200/50 shadow-xl hover:shadow-2xl transition-all duration-300 h-full overflow-hidden">
-                <div className="bg-gradient-to-r from-red-600 to-orange-600 p-4">
-                  <div className="flex items-center space-x-3">
-                    <Shield className="h-8 w-8 text-white" />
-                    <h3 className="text-xl font-bold text-white">Enhanced Security</h3>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-slate-600 mb-4">
-                    Enterprise-grade security with military-level encryption, comprehensive audit logging, and granular access controls.
-                  </p>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-red-600" />
-                      <span className="text-sm text-slate-600">AES-256-GCM encryption</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-red-600" />
-                      <span className="text-sm text-slate-600">Comprehensive audit logging</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-red-600" />
-                      <span className="text-sm text-slate-600">SOC2, GDPR, HIPAA compliance</span>
-                    </div>
-                  </div>
-                  <div className="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
-                    <p className="text-red-800 text-sm font-medium">Standard security in all tiers, advanced in Elite+</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                          {feature.id === 'enterprise-security' && (
+                            <div className="space-y-3">
+                              <Badge className="bg-red-100 text-red-800">SOC2 Compliant</Badge>
+                              <Badge className="bg-blue-100 text-blue-800 ml-2">GDPR Ready</Badge>
+                              <Badge className="bg-green-100 text-green-800 ml-2">HIPAA Certified</Badge>
+                              <Badge className="bg-purple-100 text-purple-800 ml-2">ISO 27001</Badge>
+                            </div>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  )
+                ))}
+              </AnimatePresence>
+            </div>
           </div>
 
-          <div className="text-center mt-12">
-            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white text-lg px-8 py-4">
-              <Sparkles className="mr-2 h-5 w-5" />
-              Try New Features Free
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Advanced Features Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Advanced Professional Capabilities
-            </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Comprehensive suite of enterprise-grade features designed for the modern professional
-            </p>
-          </div>         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {advancedFeatures.map((feature, index) => (
+          {/* Advanced Capabilities Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {advancedCapabilities.map((capability, index) => (
               <motion.div
-                key={feature.title}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="bg-white/80 backdrop-blur-md border-slate-200/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                <Card className="h-full bg-white hover:shadow-lg transition-shadow duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-3 mb-4">
-                      <div className="p-3 bg-gradient-to-r from-slate-600 to-blue-700 rounded-lg">
-                        <feature.icon className="h-6 w-6 text-white" />
+                      <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
+                        <capability.icon className="h-5 w-5 text-white" />
                       </div>
-                      <h3 className="text-lg font-semibold text-slate-800">{feature.title}</h3>
+                      <h3 className="font-bold text-slate-800">{capability.title}</h3>
                     </div>
-                    <p className="text-slate-600">{feature.description}</p>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      {capability.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -964,34 +698,46 @@ function App() {
         </div>
       </section>
 
-      {/* Use Cases Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-slate-50 to-blue-50">
+      {/* Competitive Advantages Section */}
+      <section id="advantages" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Trusted by Professionals Worldwide
+            <Badge className="bg-gradient-to-r from-green-500 to-teal-600 text-white mb-4">
+              Unmatched Competitive Advantages
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+              Why MeetingMind Leads the Market
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              From executive boardrooms to client consultations, MeetingMind elevates every professional interaction
+              Revolutionary capabilities that no other platform can match, 
+              positioning MeetingMind as the definitive meeting intelligence solution.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {useCases.map((useCase, index) => (
+            {competitiveAdvantages.map((advantage, index) => (
               <motion.div
-                key={useCase.title}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="bg-white/90 backdrop-blur-md border-slate-200/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full">
-                  <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-slate-600 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <useCase.icon className="h-8 w-8 text-white" />
+                <Card className="h-full bg-white hover:shadow-xl transition-all duration-300 border-0">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="p-3 bg-gradient-to-r from-green-500 to-teal-600 rounded-lg">
+                        <advantage.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-slate-800 mb-1">{advantage.title}</h3>
+                        <Badge className="bg-green-100 text-green-800 text-xs">
+                          {advantage.advantage}
+                        </Badge>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-3">{useCase.title}</h3>
-                    <p className="text-slate-600">{useCase.description}</p>
+                    <p className="text-slate-600 leading-relaxed">
+                      {advantage.description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -1001,15 +747,18 @@ function App() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Choose Your AI Intelligence Level
+            <Badge className="bg-gradient-to-r from-purple-500 to-pink-600 text-white mb-4">
+              Transparent Pricing
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+              Choose Your Intelligence Level
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               From individual professionals to enterprise organizations, 
-              we have the perfect AI collaboration solution for your needs
+              find the perfect plan for your meeting intelligence needs.
             </p>
           </div>
 
@@ -1018,50 +767,44 @@ function App() {
               <motion.div
                 key={tier.id}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="relative"
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className={`relative ${tier.popular ? 'lg:scale-105' : ''}`}
               >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <Badge className="bg-gradient-to-r from-blue-600 to-teal-600 text-white px-4 py-1">
-                      Most Popular
-                    </Badge>
-                  </div>
-                )}
-                <Card className={`bg-white/90 backdrop-blur-md border-slate-200/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full ${
-                  tier.popular ? 'ring-2 ring-blue-500 ring-opacity-50' : ''
-                }`}>
-                  <CardHeader className="text-center pb-4">
-                    <div className={`w-16 h-16 bg-gradient-to-r ${tier.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                      {tier.id === 'starter' && <Star className="h-8 w-8 text-white" />}
-                      {tier.id === 'pro' && <Brain className="h-8 w-8 text-white" />}
-                      {tier.id === 'elite' && <Crown className="h-8 w-8 text-white" />}
-                      {tier.id === 'enterprise' && <Building className="h-8 w-8 text-white" />}
+                <Card className={`h-full ${tier.popular ? 'ring-2 ring-blue-500 shadow-xl' : 'shadow-lg'} bg-white`}>
+                  {tier.popular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-1">
+                        Most Popular
+                      </Badge>
                     </div>
-                    <CardTitle className="text-2xl font-bold text-slate-800">{tier.name}</CardTitle>
+                  )}
+                  
+                  <CardHeader className={`bg-gradient-to-r ${tier.color} text-white text-center`}>
+                    <CardTitle className="text-2xl font-bold">{tier.name}</CardTitle>
                     <div className="mt-4">
-                      <span className="text-4xl font-bold text-slate-800">{tier.price}</span>
-                      <span className="text-slate-600">{tier.period}</span>
+                      <span className="text-4xl font-bold">{tier.price}</span>
+                      <span className="text-lg opacity-80">{tier.period}</span>
                     </div>
-                    <p className="text-slate-600 mt-2">{tier.description}</p>
+                    <p className="text-sm opacity-90 mt-2">{tier.description}</p>
                   </CardHeader>
-                  <CardContent className="pt-0">
-                    <ul className="space-y-3 mb-6">
+                  
+                  <CardContent className="p-6">
+                    <ul className="space-y-3">
                       {tier.features.map((feature, index) => (
                         <li key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="h-5 w-5 text-teal-600 flex-shrink-0 mt-0.5" />
-                          <span className="text-slate-600 text-sm">{feature}</span>
+                          <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-slate-700">{feature}</span>
                         </li>
                       ))}
                     </ul>
+                    
                     <Button 
-                      className={`w-full ${
+                      className={`w-full mt-6 ${
                         tier.popular 
-                          ? 'bg-gradient-to-r from-blue-600 to-teal-600 hover:from-blue-700 hover:to-teal-700 text-white' 
-                          : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800 text-white'
-                      }`}
+                          ? 'bg-gradient-to-r from-blue-600 to-purple-700 hover:from-blue-700 hover:to-purple-800' 
+                          : 'bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-700 hover:to-slate-800'
+                      } text-white`}
                     >
                       {tier.id === 'enterprise' ? 'Contact Sales' : 'Start Free Trial'}
                     </Button>
@@ -1070,47 +813,114 @@ function App() {
               </motion.div>
             ))}
           </div>
+
+          <div className="text-center mt-12">
+            <p className="text-slate-600 mb-4">
+              All plans include 14-day free trial • No credit card required • Cancel anytime
+            </p>
+            <Button variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-100">
+              Compare All Features
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-slate-50 to-blue-50">
+      {/* Enterprise Use Cases */}
+      <section id="enterprise" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-800 mb-4">
-              Trusted by Industry Leaders
+            <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white mb-4">
+              Enterprise Success Stories
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+              Transforming Business Outcomes
             </h2>
-            <p className="text-xl text-slate-600">
-              See how professionals are transforming their business conversations with MeetingMind
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              See how leading organizations leverage MeetingMind's revolutionary AI 
+              to achieve unprecedented business results.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {enterpriseUseCases.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="h-full bg-white hover:shadow-xl transition-all duration-300">
+                  <CardContent className="p-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
+                        <useCase.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="font-bold text-slate-800">{useCase.title}</h3>
+                    </div>
+                    <p className="text-slate-600 mb-4 leading-relaxed">
+                      {useCase.description}
+                    </p>
+                    <Badge className="bg-green-100 text-green-800">
+                      {useCase.metrics}
+                    </Badge>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white mb-4">
+              Customer Success Stories
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
+              Trusted by Industry Leaders
+            </h2>
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+              Discover how professionals and organizations achieve extraordinary 
+              results with MeetingMind's revolutionary AI platform.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
-                key={testimonial.name}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="bg-white/90 backdrop-blur-md border-slate-200/50 shadow-lg h-full">
+                <Card className="h-full bg-gradient-to-br from-white to-slate-50 shadow-lg">
                   <CardContent className="p-6">
                     <div className="flex items-center space-x-1 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                        <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
                       ))}
                     </div>
-                    <p className="text-slate-600 mb-6 italic">"{testimonial.content}"</p>
+                    
+                    <blockquote className="text-slate-700 mb-6 leading-relaxed">
+                      "{testimonial.content}"
+                    </blockquote>
+                    
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="font-semibold text-slate-800">{testimonial.name}</p>
-                        <p className="text-sm text-slate-600">{testimonial.role}</p>
-                        <p className="text-sm text-slate-500">{testimonial.company}</p>
+                        <div className="font-bold text-slate-800">{testimonial.name}</div>
+                        <div className="text-sm text-slate-600">{testimonial.role}</div>
+                        <div className="text-sm text-slate-500">{testimonial.company}</div>
                       </div>
-                      <Badge className="bg-gradient-to-r from-slate-500 to-blue-600 text-white">
-                        {testimonial.tier}
-                      </Badge>
+                      <div className="text-right">
+                        <Badge className="bg-blue-100 text-blue-800 mb-1">
+                          {testimonial.tier} Plan
+                        </Badge>
+                        <div className="text-xs text-green-600 font-semibold">
+                          {testimonial.metrics}
+                        </div>
+                      </div>
                     </div>
                   </CardContent>
                 </Card>
@@ -1121,87 +931,87 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-slate-600 to-blue-700">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold text-white mb-6">
-              Ready to Transform Your Professional Conversations?
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              Ready to Experience the Revolution?
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of professionals who have elevated their business intelligence 
-              with MeetingMind's revolutionary AI collaboration platform.
+            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              Join thousands of professionals who have transformed their meeting effectiveness 
+              with MeetingMind's revolutionary triple-AI collaboration platform.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-slate-700 hover:bg-slate-100 text-lg px-8 py-4">
-                <Sparkles className="mr-2 h-5 w-5" />
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button size="lg" className="bg-white text-blue-600 hover:bg-slate-100 text-lg px-8 py-4">
+                <Rocket className="mr-2 h-5 w-5" />
                 Start Your Free Trial
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-700 text-lg px-8 py-4">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-4">
                 <Calendar className="mr-2 h-5 w-5" />
-                Schedule Demo
+                Schedule Enterprise Demo
               </Button>
             </div>
-            <p className="text-blue-200 text-sm mt-4">
-              No credit card required • 14-day free trial • Cancel anytime
+            
+            <p className="text-white/80 text-sm">
+              14-day free trial • No credit card required • Full platform access
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-800 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
-            <div>
+            <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <div className="p-2 bg-gradient-to-r from-slate-600 to-blue-700 rounded-lg">
+                <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-700 rounded-lg">
                   <Brain className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold">MeetingMind</span>
+                <span className="text-2xl font-bold">MeetingMind</span>
               </div>
-              <p className="text-slate-300 text-sm">
-                Professional AI assistant and strategic business partner for the modern workplace.
+              <p className="text-slate-400 mb-6 max-w-md">
+                The world's most advanced AI meeting intelligence platform, 
+                featuring revolutionary triple-AI collaboration and predictive intelligence.
               </p>
+              <div className="flex space-x-4">
+                <Badge className="bg-blue-600">SOC2 Compliant</Badge>
+                <Badge className="bg-green-600">GDPR Ready</Badge>
+                <Badge className="bg-purple-600">HIPAA Certified</Badge>
+              </div>
             </div>
+            
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-2 text-sm text-slate-300">
-                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                <li><a href="#enterprise" className="hover:text-white transition-colors">Enterprise</a></li>
-                <li><a href="#security" className="hover:text-white transition-colors">Security</a></li>
+              <h3 className="font-bold mb-4">Platform</h3>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white transition-colors">Triple-AI Collaboration</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Predictive Intelligence</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Enterprise Security</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Multi-Language Support</a></li>
               </ul>
             </div>
+            
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-slate-300">
-                <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#careers" className="hover:text-white transition-colors">Careers</a></li>
-                <li><a href="#blog" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2 text-sm text-slate-300">
-                <li><a href="#help" className="hover:text-white transition-colors">Help Center</a></li>
-                <li><a href="#docs" className="hover:text-white transition-colors">Documentation</a></li>
-                <li><a href="#api" className="hover:text-white transition-colors">API</a></li>
-                <li><a href="#status" className="hover:text-white transition-colors">Status</a></li>
+              <h3 className="font-bold mb-4">Company</h3>
+              <ul className="space-y-2 text-slate-400">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Enterprise</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Security</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-slate-700 mt-8 pt-8 text-center text-sm text-slate-400">
-            <p>&copy; 2024 MeetingMind. All rights reserved. Professional AI Assistant Platform.</p>
+          
+          <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400">
+            <p>&copy; 2024 MeetingMind. All rights reserved. Revolutionary AI meeting intelligence platform.</p>
           </div>
         </div>
       </footer>
-      </section>
     </div>
   )
 }
