@@ -1,0 +1,21 @@
+[phases.setup]
+nixPkgs = ["nodejs-18_x", "npm-9_x", "python3"]
+
+[phases.install]
+cmds = [
+  "cd frontend/web-app && npm ci",
+  "cd backend && npm ci"
+]
+
+[phases.build]
+cmds = [
+  "cd frontend/web-app && npm run build",
+  "cd backend && npm run build"
+]
+
+[start]
+cmd = "cd backend && npm start"
+
+[variables]
+NODE_ENV = "staging"
+PORT = "3000"

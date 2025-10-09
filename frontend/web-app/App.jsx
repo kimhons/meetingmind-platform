@@ -7,7 +7,7 @@ import {
   Clock, Star, Eye, Mic, Camera, Globe, Lock, Award, CheckCircle, ArrowRight,
   Layers, Target, TrendingUp, BarChart3, Lightbulb, Headphones, Monitor,
   FileText, Settings, Crown, Building, Sparkles, Infinity, Calendar,
-  Database, Network, Cpu, Activity, Gauge, Radar, Telescope, Rocket
+  Database, Network, Cpu, Activity, Gauge, Radar, Binoculars, Rocket
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './App.css'
@@ -31,7 +31,7 @@ function App() {
     {
       id: 'predictive-intelligence',
       title: 'Predictive Meeting Intelligence',
-      icon: Telescope,
+      icon: Binoculars,
       description: '87% accuracy in forecasting meeting outcomes and decision points',
       color: 'from-purple-600 to-pink-600',
       details: 'Advanced machine learning algorithms analyze conversation patterns, participant behavior, and historical data to predict likely outcomes, strategic opportunities, and potential roadblocks before they occur.'
@@ -260,7 +260,7 @@ function App() {
     {
       title: 'Predictive Intelligence',
       description: '87% accuracy in meeting outcome forecasting',
-      icon: Telescope,
+      icon: Binoculars,
       advantage: 'vs. Reactive-only solutions'
     },
     {
