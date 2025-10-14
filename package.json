@@ -3,6 +3,8 @@
     "@anthropic-ai/sdk": "^0.65.0",
     "axios": "^1.12.2",
     "cheerio": "^1.1.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
     "framer-motion": "^12.23.22",
     "googleapis": "^161.0.0",
     "lucide-react": "^0.545.0",
