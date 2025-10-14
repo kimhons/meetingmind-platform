@@ -1,0 +1,8 @@
+{
+  "aimlApiEnabled": true,
+  "trafficPercentage": 5,
+  "fallbackEnabled": true,
+  "costOptimizationEnabled": true,
+  "multiModelSynthesisEnabled": false,
+  "realTimeLearningEnabled": false
+}
